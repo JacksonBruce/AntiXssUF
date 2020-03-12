@@ -13,12 +13,12 @@ namespace AntiXssUF.TestSite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private readonly IFilterPolicyFactory policyFactory;
+        private readonly IFilterPolicyFactory policyFactory;
         private StringBuilder html;
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IFilterPolicyFactory policyFactory)
         {
             _logger = logger;
-            //this.policyFactory = policyFactory;
+            this.policyFactory = policyFactory;
         }
         void FilterAttacks(RichText richText, Func<string, bool> fn, [CallerMemberName] string propertyName = null)
         {
