@@ -1,0 +1,2015 @@
+{
+  "Directives": {
+    "omitxmldeclaration": "true",
+    "omitdoctypedeclaration": "true",
+    "maxinputsize": "200000",
+    "usexhtml": "true",
+    "formatoutput": "true",
+    "embedstylesheets": "false",
+    "connectiontimeout": "5000",
+    "maxstylesheetimports": "3"
+  },
+  "CommonRegularExpressions": {
+    "colornameorcode": "(#[0-9a-fA-F]{6}|[a-zA-Z]{1,20})",
+    "number": "[0-9]+",
+    "anything": ".*",
+    "numberorpercent": "(\\d)+(%{0,1})",
+    "paragraph": "([\\p{L}\\p{N},'\\.\\s\\-_\\(\\)]|&[0-9]{2};)*",
+    "htmlid": "[a-zA-Z0-9-_]+",
+    "htmltitle": "[\\p{L}\\p{N}\\s-_',:\\[\\]!\\./\\\\\\(\\)]*",
+    "htmlclass": "[a-zA-Z0-9\\s,-_]+",
+    "onsiteurl": "([\\p{L}\\p{N}\\\\/\\.\\?=\\#&;\\-_~]+|\\#(\\w)+)",
+    "offsiteurl": "(\\s)*((ht|f)tp(s?)://|mailto:)[\\p{L}\\p{N}]+[~\\p{L}\\p{N}\\p{Zs}\\-_\\.@#$%&;:,\\?=/\\+!]*(\\s)*",
+    "boolean": "(true|false)",
+    "singleprintable": "[a-zA-Z0-9]{1}",
+    "csselementselector": "[a-zA-Z0-9-_]+|\\*",
+    "cssclassselector": "\\.[a-zA-Z0-9-_]+",
+    "cssidselector": "#[a-zA-Z0-9-_]+",
+    "csspseudoelementselector": ":[a-zA-Z0-9\\-_]+",
+    "cssattributeselector": "\\[[a-zA-Z0-9\\-_]+((=|~=|\\|=){1}[a-zA-Z0-9\\-_]+){1}\\]",
+    "cssonsiteuri": "url\\(([\\p{L}\\p{N}\\\\/\\.\\?=\\#&;\\-_~]+|\\#(\\w)+)\\)",
+    "cssoffsiteuri": "url\\((\\s)*((ht|f)tp(s?)://)[\\p{L}\\p{N}]+[~\\p{L}\\p{N}\\p{Zs}\\-_\\.@#$%&;:,\\?=/\\+!]*(\\s)*\\)",
+    "csscommenttext": "[\\p{L}\\p{N}-_,\\/\\\\\\.\\s\\(\\)!\\?\\=\\$#%\\^&:\"']+",
+    "integer": "(-|\\+)?[0-9]+",
+    "angle": "(-|\\+)?([0-9]+(.[0-9]+)?)(deg|grads|rad)",
+    "time": "([0-9]+(.[0-9]+)?)(ms|s)",
+    "frequency": "([0-9]+(.[0-9]+)?)(hz|khz)",
+    "length": "((-|\\+)?0|(-|\\+)?([0-9]+(.[0-9]+)?)(em|ex|px|in|cm|mm|pt|pc))",
+    "percentage": "(-|\\+)?([0-9]+(.[0-9]+)?)%",
+    "csscolor": "(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)|(^#[0-9a-fA-F]{3,3}$)|(^#[0-9a-fA-F]{6,6}$)|rgba?\\(\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\s*,\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\s*,\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])(\\s*,\\s*[1])?\\s*\\)",
+    "absolute-size": "(xx-small|x-small|small|medium|large|x-large|xx-large)",
+    "relative-size": "(larger|smaller)"
+  },
+  "CommonAttributes": [
+    {
+     
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9_\\-\\:]+" } ],
+      "Name": "id",
+      "Description": "The 'id' of any HTML attribute should not contain anything besides letters and numbers"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "htmlClass" } ],
+      "Name": "class",
+      "Description": "The 'class' of any HTML attribute is usually a single word, but it can also be a list of class names separated by spaces"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": "[a-zA-Z]{2,20}" } ],
+      "Name": "lang",
+      "Description": "The 'lang' attribute tells the browser what language the element's attribute values and content are written in"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "htmlTitle" } ],
+      "Name": "title",
+      "Description": "The 'title' attribute provides text that shows up in a 'tooltip' when a user hovers their mouse over the element"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "paragraph" } ],
+      "Name": "alt",
+      "Description": "The 'alt' attribute provides alternative text to users when its visual representation is not available"
+    },
+    {
+     
+      "Name": "style",
+      "Description": "The 'style' attribute provides the ability for users to change many attributes of the tag's contents using a strict syntax"
+    },
+    {
+     
+      "AllowedValues": [ "screen", "tty", "tv", "projection", "handheld", "print", "braille", "aural", "all" ],
+      "Name": "media"
+    },
+    {
+     
+      "AllowedRegExp": [
+        { "Name": "onsiteURL" },
+        { "Name": "offsiteURL" }
+      ],
+      "AllowedValues": [ "javascript:history.go(0)", "javascript:history.go(-1)", "javascript:void(0)", "javascript:location.reload()" ],
+      "Name": "href"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9-_\\$]+" } ],
+      "Name": "name"
+    },
+    {
+     
+      "AllowedValues": [ "default", "rect", "circle", "poly" ],
+      "Name": "shape",
+      "Description": "The 'shape' attribute defines the shape of the selectable area"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "border"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "cellpadding"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "cellspacing"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "colspan"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "rowspan"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "onsiteURL" } ],
+      "Name": "background"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "colorNameOrCode" } ],
+      "Name": "bgcolor"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "paragraph" } ],
+      "Name": "abbrev"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*]*" } ],
+      "Name": "headers",
+      "Description": "The 'headers' attribute is a space-separated list of cell IDs"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": "numberOrPercent" } ],
+      "Name": "charoff"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": ".*{0,1}" } ],
+      "Name": "char"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*,]*" } ],
+      "Name": "axis",
+      "Description": "The 'headers' attribute is a comma-separated list of related header cells"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "anything" } ],
+      "Name": "nowrap",
+      "Description": "The 'nowrap' attribute tells the browser not to wrap text that goes over one line"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "numberOrPercent" } ],
+      "Name": "width"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "numberOrPercent" } ],
+      "Name": "height"
+    },
+    {
+     
+      "AllowedValues": [ "center", "middle", "left", "right", "justify", "char" ],
+      "Name": "align",
+      "Description": "The 'align' attribute of an HTML element is a direction word, like 'left', 'right' or 'center'"
+    },
+    {
+     
+      "AllowedValues": [ "baseline", "bottom", "middle", "top" ],
+      "Name": "valign",
+      "Description": "The 'valign' attribute of an HTML attribute is a direction word, like 'baseline','bottom','middle' or 'top'"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onFocus",
+      "Description": "The 'onFocus' event is executed when the control associated with the tag gains focus"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onBlur",
+      "Description": "The 'onBlur' event is executed when the control associated with the tag loses focus"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onClick",
+      "Description": "The 'onClick' event is executed when the control associated with the tag is clicked"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onDblClick",
+      "Description": "The 'onDblClick' event is executed when the control associated with the tag is clicked twice immediately"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onMouseDown",
+      "Description": "The 'onMouseDown' event is executed when the control associated with the tag is clicked but not yet released"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onMouseUp",
+      "Description": "The 'onMouseUp' event is executed when the control associated with the tag is clicked after the button is released"
+    },
+    {
+     
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
+      "Name": "onMouseOver",
+      "Description": "The 'onMouseOver' event is executed when the user's mouse hovers over the control associated with the tag"
+    },
+    {
+     
+      "AllowedValues": [ "row", "col", "rowgroup", "colgroup" ],
+      "Name": "scope",
+      "Description": "The 'scope' attribute defines what's covered by the header cells"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "anything" } ],
+      "Name": "disabled"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "anything" } ],
+      "Name": "readonly"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "anything" } ],
+      "Name": "accesskey"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "size"
+    },
+    {
+     
+      "AllowedValues": [ "on", "off" ],
+      "Name": "autocomplete"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "rows"
+    },
+    {
+     
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "Name": "cols"
+    }
+  ],
+  "CssRules": [
+    {
+      "AllowedRegExp": [ { "Name": "angle" } ],
+      "AllowedValues": [ "left-side", "far-left", "left", "center-left", "center", "center-right", "right", "far-right", "right-side", "behind", "leftwards", "rightwards", "inherit" ],
+      "Name": "azimuth",
+      "Description": "This property is most likely to be implemented by mixing the same signal into different channels at differing volumes."
+    },
+    {
+      "Shorthands": [ "background-color", "background-image", "background-repeat", "background-attachment", "background-position" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "background",
+      "Description": "The 'background' property is a shorthand property for setting the individual background properties (i.e., 'background-color', 'background-image', 'background-repeat', 'background-attachment' and 'background-position') at the same place in the style sheet."
+    },
+    {
+      "AllowedValues": [ "scroll", "fixed", "inherit" ],
+      "Name": "background-attachment",
+      "Description": "If a background image is specified, this property specifies whether it is fixed with regard to the viewport ('fixed') or scrolls along with the document ('scroll')."
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "transparent", "inherit" ],
+      "Name": "background-color",
+      "Description": "This property sets the background color of an element, either a <color> value or the keyword 'transparent', to make the underlying colors shine through."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "background-image",
+      "Description": "This property sets the background image of an element."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "percentage" },
+        { "Name": "length" }
+      ],
+      "AllowedValues": [ "top", "center", "bottom", "left", "center", "right", "inherit" ],
+      "Name": "background-position",
+      "Description": "If a background image has been specified, this property specifies its initial position."
+    },
+    {
+      "AllowedValues": [ "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" ],
+      "Name": "background-repeat",
+      "Description": "If a background image is specified, this property specifies whether the image is repeated (tiled), and how."
+    },
+    {
+      "AllowedValues": [ "collapse", "separate", "inherit" ],
+      "Name": "border-collapse",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "transparent", "inherit" ],
+      "Name": "border-color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-top-color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-right-color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-bottom-color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-left-color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "bottom",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "top", "bottom", "left", "right", "inherit" ],
+      "Name": "caption-side",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "none", "left", "right", "both", "inherit" ],
+      "Name": "clear",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "color",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "cue-after",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "cue-before",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "ltr", "rtl", "inherit" ],
+      "Name": "direction",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "inline", "block", "list-item", "run-in", "compact", "marker", "table", "inline-table", "table-row-group", "table-header-group", "table-footer-group", "table-row", "table-column-group", "table-column", "table-cell", "table-caption", "none", "inherit" ],
+      "Name": "display",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "angle" } ],
+      "AllowedValues": [ "below", "level", "above", "higher", "lower", "inherit" ],
+      "Name": "elevation",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "show", "hide", "inherit" ],
+      "Name": "empty-cells",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "left", "right", "none", "inherit" ],
+      "Name": "float",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "absolute-size" },
+        { "Name": "relative-size" },
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "font-size",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "font-size-adjust",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "wider", "narrower", "ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", "inherit" ],
+      "Name": "font-stretch",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "italic", "oblique", "inherit" ],
+      "Name": "font-style",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "small-caps", "inherit" ],
+      "Name": "font-variant",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "bold", "bolder", "lighter", "100", "200", "300", "400", "500", "600", "700", "800", "900", "inherit" ],
+      "Name": "font-weight",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "height",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "left",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "normal", "inherit" ],
+      "Name": "letter-spacing",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "number" },
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "normal", "inherit" ],
+      "Name": "line-height",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "list-style-image",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "inside", "outside", "inherit" ],
+      "Name": "list-style-position",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "disc", "circle", "square", "decimal", "decimal-leading-zero", "lower-roman", "upper-roman", "lower-greek", "lower-alpha", "lower-latin", "upper-alpha", "upper-latin", "hebrew", "armenian", "georgian", "cjk-ideographic", "hiragana", "katakana", "hiragana-iroha", "katakana-iroha", "none", "inherit" ],
+      "Name": "list-style-type",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "marker-offset",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "max-height",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "max-width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "min-height",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "min-width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "integer" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "orphans",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "invert", "inherit" ],
+      "Name": "outline-color",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "visible", "hidden", "scroll", "auto", "inherit" ],
+      "Name": "overflow",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ],
+      "Name": "page-break-after",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ],
+      "Name": "page-break-before",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "avoid", "auto", "inherit" ],
+      "Name": "page-break-inside",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "time" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "pause-after",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "time" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "pause-before",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "frequency" } ],
+      "AllowedValues": [ "x-low", "low", "medium", "high", "x-high", "inherit" ],
+      "Name": "pitch",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "pitch-range",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "static", "inherit" ],
+      "Name": "position",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "richness",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "right",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "auto", "portrait", "landscape", "inherit" ],
+      "Name": "size",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "none", "spell-out", "inherit" ],
+      "Name": "speak",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "once", "always", "inherit" ],
+      "Name": "speak-header",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "digits", "continuous", "inherit" ],
+      "Name": "speak-numeral",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "code", "none", "inherit" ],
+      "Name": "speak-punctuation",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "x-slow", "slow", "medium", "fast", "x-fast", "faster", "slower", "inherit" ],
+      "Name": "speech-rate",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "stress",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "auto", "fixed", "inherit" ],
+      "Name": "table-layout",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "text-indent",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "capitalize", "uppercase", "lowercase", "none", "inherit" ],
+      "Name": "text-transform",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "top",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "embed", "bidi-override", "inherit" ],
+      "Name": "unicode-bidi",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "percentage" },
+        { "Name": "length" }
+      ],
+      "AllowedValues": [ "baseline", "sub", "super", "top", "text-top", "middle", "bottom", "text-bottom", "inherit" ],
+      "Name": "vertical-align",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "visible", "hidden", "collapse", "inherit" ],
+      "Name": "visibility",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "number" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "silent", "x-soft", "soft", "medium", "loud", "x-loud", "inherit" ],
+      "Name": "volume",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "normal", "pre", "nowrap", "inherit" ],
+      "Name": "white-space",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "integer" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "widows",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "normal", "inherit" ],
+      "Name": "word-spacing",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "integer" } ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "z-index",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "inherit", "none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset" ],
+      "Name": "border-style",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-top-style",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-right-style",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-bottom-style",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-left-style",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-top-width",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-right-width",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-bottom-width",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-left-width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "inherit", "thin", "medium", "thick" ],
+      "Name": "border-width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit", "auto" ],
+      "Name": "margin",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "margin-top",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "margin-right",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "margin-bottom",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "margin-left",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "outline-style",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "outline-width",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "padding",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "padding-top",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "padding-right",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "padding-bottom",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "padding-left",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-top-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-top",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-top-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-right",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-top-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-bottom",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "border-top-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-left",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "cue-before", "cue-after" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "cue",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "list-style-type", "list-style-position", "list-style-image" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "list-style",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "crop", "cross", "none", "inherit" ],
+      "Name": "marks",
+      "Description": ""
+    },
+    {
+      "Shorthands": [ "outline-color", "outline-style", "outline-width" ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "outline",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "time" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "pause",
+      "Description": ""
+    },
+    {
+      "AllowedValues": [ "none", "underline", "overline", "line-through", "blink", "inherit" ],
+      "Name": "text-decoration",
+      "Description": ""
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "inherit" ],
+      "Name": "border-spacing",
+      "Description": "The lengths specify the distance that separates adjacent cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssElementSelector" },
+        { "Name": "cssClassSelector" },
+        { "Name": "cssIDSelector" },
+        { "Name": "cssAttributeSelector" },
+        { "Name": "integer" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "counter-increment",
+      "Description": "The 'counter-increment' property accepts one or more names of counters (identifiers), each one optionally followed by an integer."
+    },
+    {
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "auto", "inherit" ],
+      "Name": "clip",
+      "Description": "The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "auto", "inherit", "crosshair", "default", "pointer", "move", "e-resize", "ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize", "s-resize", "w-resize| text", "wait", "help" ],
+      "Name": "cursor",
+      "Description": "This property specifies the type of cursor to be displayed for the pointing device."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssColor" },
+        { "Name": "length" }
+      ],
+      "AllowedValues": [ "none", "inherit" ],
+      "Name": "text-shadow",
+      "Description": "This property accepts a comma-separated list of shadow effects to be applied to the text of the element."
+    },
+    {
+      "Shorthands": [ "font-style", "font-variant", "font-weight", "font-size", "line-height", "font-family" ],
+      "AllowedValues": [ "/", "caption", "icon", "menu", "message-box", "small-caption", "status-bar", "inherit" ],
+      "Name": "font",
+      "Description": "The 'font' property is, except as described below, a shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet."
+    },
+    {
+      "AllowedRegExp": [ { "Value": "[\\w,\\-'\" ]+" } ],
+      "AllowedValues": [ "serif", "arial", "lucida console", "sans-serif", "cursive", "verdana", "fantasy", "monospace" ],
+      "Name": "font-family",
+      "Description": "This property specifies a prioritized list of font family names and/or generic family names."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssElementSelector" },
+        { "Name": "cssClassSelector" },
+        { "Name": "cssIDSelector" },
+        { "Name": "cssAttributeSelector" }
+      ],
+      "AllowedValues": [ "auto" ],
+      "Name": "page",
+      "Description": "The 'page' property can be used to specify a particular type of page where an element should be displayed."
+    },
+    {
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "mix", "repeat", "none", "auto", "inherit" ],
+      "Name": "play-during",
+      "Description": "Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken."
+    },
+    {
+      "AllowedValues": [ "left", "right", "center", "justify", "inherit" ],
+      "Name": "text-align",
+      "Description": "This property describes how inline content of a block is aligned."
+    },
+    {
+      "AllowedValues": [ "male", "female", "child", "inherit" ],
+      "Name": "voice-family",
+      "Description": "The value is a comma-separated, prioritized list of voice family names (compare with 'font-family')."
+    }
+  ],
+  "GlobalAttributes": [
+    {
+     
+      "Name": "id"
+    },
+    {
+     
+      "Name": "style"
+    },
+    {
+     
+      "Name": "title"
+    },
+    {
+     
+      "Name": "class"
+    },
+    {
+     
+      "Name": "lang"
+    }
+  ],
+  "TagRules": [
+    {
+      
+      "Action": 2,
+      "Name": "html"
+    },
+    {
+      "AllowedAttributes": {
+        "bgcolor": {
+         
+          "Name": "bgcolor"
+        }
+      },
+      "Action": 2,
+      "Name": "body"
+    },
+    {
+      
+      "Action": 3,
+      "Name": "meta"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "head"
+    },
+    {
+      
+      "Action": 1,
+      "Name": "title"
+    },
+    {
+      
+      "Action": 0,
+      "Name": "script"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "noscript"
+    },
+    {
+      
+      "Action": 0,
+      "Name": "iframe"
+    },
+    {
+      
+      "Action": 0,
+      "Name": "frameset"
+    },
+    {
+      
+      "Action": 0,
+      "Name": "frame"
+    },
+    {
+      "AllowedAttributes": {
+        "for": {
+         
+          "AllowedRegExp": [ { "Name": "htmlId" } ],
+          "Name": "for"
+        }
+      },
+      "Action": 0,
+      "Name": "label"
+    },
+    {
+      "AllowedAttributes": {
+        "action": {
+         
+          "AllowedRegExp": [
+            { "Name": "onsiteURL" },
+            { "Name": "offsiteURL" }
+          ],
+          "Name": "action"
+        },
+        "name": {
+         
+          "Name": "name"
+        },
+        "autocomplete": {
+         
+          "Name": "autocomplete"
+        },
+        "method": {
+         
+          "AllowedValues": [ "post", "get" ],
+          "Name": "method"
+        }
+      },
+      "Action": 2,
+      "Name": "form"
+    },
+    {
+      "AllowedAttributes": {
+        "name": {
+         
+          "Name": "name"
+        },
+        "value": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "value"
+        },
+        "disabled": {
+         
+          "Name": "disabled"
+        },
+        "accesskey": {
+         
+          "Name": "accesskey"
+        },
+        "type": {
+         
+          "AllowedValues": [ "submit", "reset", "button" ],
+          "Name": "type"
+        }
+      },
+      "Action": 2,
+      "Name": "button"
+    },
+    {
+      "AllowedAttributes": {
+        "name": {
+         
+          "Name": "name"
+        },
+        "size": {
+         
+          "Name": "size"
+        },
+        "maxlength": {
+         
+          "AllowedRegExp": [ { "Name": "number" } ],
+          "Name": "maxlength"
+        },
+        "autocomplete": {
+         
+          "Name": "autocomplete"
+        },
+        "checked": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "checked"
+        },
+        "alt": {
+         
+          "Name": "alt"
+        },
+        "src": {
+         
+          "AllowedRegExp": [
+            { "Name": "onsiteURL" },
+            { "Name": "offsiteURL" }
+          ],
+          "Name": "src"
+        },
+        "usemap": {
+         
+          "AllowedRegExp": [ { "Name": "onsiteURL" } ],
+          "Name": "usemap"
+        },
+        "type": {
+         
+          "AllowedValues": [ "hidden", "text", "password", "radio", "checkbox", "submit", "button", "image", "file", "reset" ],
+          "Name": "type"
+        },
+        "value": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "value"
+        },
+        "disabled": {
+         
+          "Name": "disabled"
+        },
+        "readonly": {
+         
+          "Name": "readonly"
+        },
+        "accesskey": {
+         
+          "Name": "accesskey"
+        },
+        "border": {
+         
+          "Name": "border"
+        }
+      },
+      "Action": 2,
+      "Name": "input"
+    },
+    {
+      "AllowedAttributes": {
+        "name": {
+         
+          "Name": "name"
+        },
+        "disabled": {
+         
+          "Name": "disabled"
+        },
+        "multiple": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "multiple"
+        },
+        "size": {
+         
+          "Name": "size"
+        }
+      },
+      "Action": 2,
+      "Name": "select"
+    },
+    {
+      "AllowedAttributes": {
+        "disabled": {
+         
+          "Name": "disabled"
+        },
+        "value": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "value"
+        },
+        "label": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "label"
+        },
+        "selected": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "selected"
+        }
+      },
+      "Action": 2,
+      "Name": "option"
+    },
+    {
+      "AllowedAttributes": {
+        "rows": {
+         
+          "Name": "rows"
+        },
+        "cols": {
+         
+          "Name": "cols"
+        },
+        "name": {
+         
+          "Name": "name"
+        },
+        "disabled": {
+         
+          "Name": "disabled"
+        },
+        "readonly": {
+         
+          "Name": "readonly"
+        },
+        "accesskey": {
+         
+          "Name": "accesskey"
+        }
+      },
+      "Action": 2,
+      "Name": "textarea"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h1"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h2"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h3"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h4"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h5"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "h6"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        }
+      },
+      "Action": 2,
+      "Name": "p"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "i"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "b"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "u"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "strong"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "em"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "small"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "big"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "pre"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "code"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "cite"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "samp"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "sub"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "sup"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "strike"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "center"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "blockquote"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "hr"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "br"
+    },
+    {
+      "AllowedAttributes": {
+        "color": {
+         
+          "AllowedRegExp": [ { "Name": "colorNameOrCode" } ],
+          "Name": "color"
+        },
+        "face": {
+         
+          "AllowedRegExp": [ { "Value": "[\\w;, ]+" } ],
+          "Name": "face"
+        },
+        "size": {
+         
+          "AllowedRegExp": [ { "Value": "(\\+|-){0,1}(\\d)+" } ],
+          "Name": "size"
+        }
+      },
+      "Action": 2,
+      "Name": "font"
+    },
+    {
+      "AllowedAttributes": {
+        "href": {
+         
+          "Name": "href"
+        },
+        "onfocus": {
+         
+          "Name": "onFocus"
+        },
+        "onblur": {
+         
+          "Name": "onBlur"
+        },
+        "nohref": {
+         
+          "AllowedRegExp": [ { "Name": "anything" } ],
+          "Name": "nohref"
+        },
+        "rel": {
+         
+          "AllowedValues": [ "nofollow" ],
+          "Name": "rel"
+        },
+        "name": {
+         
+          "Name": "name"
+        }
+      },
+      "Action": 2,
+      "Name": "a"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "map"
+    },
+    {
+      "AllowedAttributes": {
+        "type": {
+         
+          "AllowedValues": [ "text/css" ],
+          "Name": "type"
+        },
+        "media": {
+         
+          "Name": "media"
+        }
+      },
+      "Action": 2,
+      "Name": "style"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "span"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        }
+      },
+      "Action": 2,
+      "Name": "div"
+    },
+    {
+      "AllowedAttributes": {
+        "src": {
+          "OnInvalid": 2,
+          "AllowedRegExp": [
+            { "Name": "onsiteURL" },
+            { "Name": "offsiteURL" }
+          ],
+          "Name": "src"
+        },
+        "name": {
+         
+          "Name": "name"
+        },
+        "alt": {
+         
+          "Name": "alt"
+        },
+        "height": {
+         
+          "Name": "height"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "border": {
+         
+          "Name": "border"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "hspace": {
+         
+          "AllowedRegExp": [ { "Name": "number" } ],
+          "Name": "hspace"
+        },
+        "vspace": {
+         
+          "AllowedRegExp": [ { "Name": "number" } ],
+          "Name": "vspace"
+        }
+      },
+      "Action": 2,
+      "Name": "img"
+    },
+    {
+      "AllowedAttributes": {
+        "media": {
+         
+          "Name": "media"
+        },
+        "type": {
+          "OnInvalid": 2,
+          "AllowedValues": [ "text/css", "application/rss+xml", "image/x-icon" ],
+          "Name": "type"
+        },
+        "rel": {
+         
+          "AllowedValues": [ "stylesheet", "shortcut icon", "search", "copyright", "top", "alternate" ],
+          "Name": "rel"
+        }
+      },
+      "Action": 2,
+      "Name": "link"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "ul"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "ol"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "li"
+    },
+    {
+      
+      "Action": 1,
+      "Name": "dd"
+    },
+    {
+      
+      "Action": 1,
+      "Name": "dl"
+    },
+    {
+      
+      "Action": 1,
+      "Name": "dt"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        }
+      },
+      "Action": 2,
+      "Name": "thead"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        }
+      },
+      "Action": 2,
+      "Name": "tbody"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        }
+      },
+      "Action": 2,
+      "Name": "tfoot"
+    },
+    {
+      "AllowedAttributes": {
+        "height": {
+         
+          "Name": "height"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "border": {
+         
+          "Name": "border"
+        },
+        "bgcolor": {
+         
+          "Name": "bgcolor"
+        },
+        "cellpadding": {
+         
+          "Name": "cellpadding"
+        },
+        "cellspacing": {
+         
+          "Name": "cellspacing"
+        },
+        "background": {
+         
+          "Name": "background"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "noresize": {
+         
+          "AllowedValues": [ "noresize" ],
+          "Name": "noresize"
+        }
+      },
+      "Action": 2,
+      "Name": "table"
+    },
+    {
+      "AllowedAttributes": {
+        "background": {
+         
+          "Name": "background"
+        },
+        "bgcolor": {
+         
+          "Name": "bgcolor"
+        },
+        "abbrev": {
+         
+          "Name": "abbrev"
+        },
+        "axis": {
+         
+          "Name": "axis"
+        },
+        "headers": {
+         
+          "Name": "headers"
+        },
+        "scope": {
+         
+          "Name": "scope"
+        },
+        "nowrap": {
+         
+          "Name": "nowrap"
+        },
+        "height": {
+         
+          "Name": "height"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        },
+        "colspan": {
+         
+          "Name": "colspan"
+        },
+        "rowspan": {
+         
+          "Name": "rowspan"
+        }
+      },
+      "Action": 2,
+      "Name": "td"
+    },
+    {
+      "AllowedAttributes": {
+        "abbrev": {
+         
+          "Name": "abbrev"
+        },
+        "axis": {
+         
+          "Name": "axis"
+        },
+        "headers": {
+         
+          "Name": "headers"
+        },
+        "scope": {
+         
+          "Name": "scope"
+        },
+        "nowrap": {
+         
+          "Name": "nowrap"
+        },
+        "bgcolor": {
+         
+          "Name": "bgcolor"
+        },
+        "height": {
+         
+          "Name": "height"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        },
+        "colspan": {
+         
+          "Name": "colspan"
+        },
+        "rowspan": {
+         
+          "Name": "rowspan"
+        }
+      },
+      "Action": 2,
+      "Name": "th"
+    },
+    {
+      "AllowedAttributes": {
+        "height": {
+         
+          "Name": "height"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "background": {
+         
+          "Name": "background"
+        }
+      },
+      "Action": 2,
+      "Name": "tr"
+    },
+    {
+      "AllowedAttributes": {
+        "span": {
+         
+          "AllowedRegExp": [ { "Name": "number" } ],
+          "Name": "span"
+        },
+        "width": {
+         
+          "Name": "width"
+        },
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        }
+      },
+      "Action": 2,
+      "Name": "colgroup"
+    },
+    {
+      "AllowedAttributes": {
+        "align": {
+         
+          "Name": "align"
+        },
+        "char": {
+         
+          "Name": "char"
+        },
+        "charoff": {
+         
+          "Name": "charoff"
+        },
+        "valign": {
+         
+          "Name": "valign"
+        },
+        "span": {
+         
+          "AllowedRegExp": [ { "Name": "number" } ],
+          "Name": "span"
+        },
+        "width": {
+         
+          "Name": "width"
+        }
+      },
+      "Action": 2,
+      "Name": "col"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "fieldset"
+    },
+    {
+      
+      "Action": 2,
+      "Name": "legend"
+    }
+  ]
+}

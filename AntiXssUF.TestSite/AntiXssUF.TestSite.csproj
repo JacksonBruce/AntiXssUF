@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>AntiXssUF.TestSite</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="DefaultPolicy.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="DefaultPolicy.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\DefaultPolicy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="resources\DefaultPolicy.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="resources\DefaultPolicy.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AntiXssUF\AntiXssUF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="resources\Policy.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+
+
+
+</Project>
