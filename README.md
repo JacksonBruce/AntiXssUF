@@ -2,8 +2,10 @@
 跨站脚本攻击（XSS）过滤器，以白名单的过滤策略，支持多种过滤策略，可以根据业务场景选择适合的过滤策略，或者根据用户角色动态绑定过滤策略，支持OwaspAntisamy项目的配置，支持json格式的配置；
 使用方法：
 
-       1. 在启动类Startup.cs上添加依赖注入
-       
+## . 在启动类Startup.cs上添加依赖注入
+    
+
+```
         public void ConfigureServices(IServiceCollection services)
         {
             //添加策略和设置默认策略
@@ -24,8 +26,12 @@
             services.AddControllersWithViews();
         }
         
-        2.在构造函数注入依赖
+```
         
+### . 在构造函数注入依赖
+      
+
+```
         //依赖注入
         public HomeController(IFilterPolicyFactory policyFactory)
         {
@@ -37,13 +43,26 @@
             var clean = filter.Filters(source);//过滤危险代码
             return Content(clean);
         }
+        
+```
+### . 使用模型绑定器
+
+
+```
         //模型绑定过滤策略
         public class TestModel
         {
            public string Name { get; set; }
             [XssSchemeName("ebay")]
             public RichText RichText { get; set; }
-        }
+        }        
+        
+```
+
+### . 在控制器上直接使用
+
+
+```
         public IActionResult Test(TestModel model)
         {
             string clean = model?.RichText;//这里自动过滤危险代码
@@ -55,5 +74,7 @@
             string clean = richText;//这里自动过滤危险代码
             return Content(clean??string.Empty);
         }
+        
+```
         
         
