@@ -1,41 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ufangx.Xss;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AntiXssUF.TestSite.Binders
+namespace Ufangx.Xss
 {
     public class RichTextBinder : IModelBinder
     {
-        public Task BindModelAsync(ModelBindingContext bindingContext)
+     
+
+        public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
             if (bindingContext == null)
             {
                 throw new ArgumentNullException(nameof(bindingContext));
             }
-
             var modelName = bindingContext.ModelName;
-
-            // Try to fetch the value of the argument by name
             var valueProviderResult = bindingContext.ValueProvider.GetValue(modelName);
-
             if (valueProviderResult == ValueProviderResult.None)
             {
-                return Task.CompletedTask;
+                return;
             }
-
             bindingContext.ModelState.SetModelValue(modelName, valueProviderResult);
-
             string value = (string)valueProviderResult;
             if (string.IsNullOrEmpty(value))
             {
-                return Task.CompletedTask;
+                return;
             }
-            RichText richText = value;
+            IXssSchemeName scheme = bindingContext.ModelMetadata is DefaultModelMetadata defaultModelMetadata?
+                (defaultModelMetadata.MetadataKind == ModelMetadataKind.Parameter ? defaultModelMetadata.Attributes.ParameterAttributes : defaultModelMetadata.Attributes.PropertyAttributes)?.Cast<IXssSchemeName>()?.FirstOrDefault():null;
+
+            RichText richText = scheme == null ?(RichText)value : 
+                new RichText(value,await bindingContext.HttpContext.RequestServices.GetService<IFilterPolicyFactory>().CreateHtmlFilter(await scheme.GetSchemeName(bindingContext.HttpContext)));
+          
+
+
             bindingContext.Result = ModelBindingResult.Success(richText);
-            return Task.CompletedTask;
+      
 
         }
     }

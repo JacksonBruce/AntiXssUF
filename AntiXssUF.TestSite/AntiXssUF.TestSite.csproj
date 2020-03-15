@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AntiXssUF\AntiXssUF.csproj" />
+    <ProjectReference Include="..\AntiXssUF.Mvc\AntiXssUF.Mvc.csproj" />
   </ItemGroup>
 
   <ItemGroup>

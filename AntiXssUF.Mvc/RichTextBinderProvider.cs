@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using Ufangx.Xss;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
-namespace AntiXssUF.TestSite.Binders
+namespace Ufangx.Xss
 {
     public class RichTextBinderProvider : IModelBinderProvider
     {
@@ -15,8 +16,7 @@ namespace AntiXssUF.TestSite.Binders
 
             if (context.Metadata.ModelType == typeof(RichText))
             {
-                //return new BinderTypeModelBinder(typeof(RichTextBinder));
-                return new RichTextBinder();
+                return new BinderTypeModelBinder(typeof(RichTextBinder));
 
             }
 

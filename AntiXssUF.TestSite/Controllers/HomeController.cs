@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AntiXssUF.TestSite.Models;
 using Ufangx.Xss;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AntiXssUF.TestSite.Controllers
 {
@@ -17,6 +19,7 @@ namespace AntiXssUF.TestSite.Controllers
         private StringBuilder html;
         public HomeController(ILogger<HomeController> logger, IFilterPolicyFactory policyFactory)
         {
+           
             _logger = logger;
             this.policyFactory = policyFactory;
         }
@@ -120,6 +123,14 @@ namespace AntiXssUF.TestSite.Controllers
         }
         public IActionResult Index()
         {
+
+
+            IEnumerable<object> list = null;
+            if( !(list?.Count()).HasValue) { 
+            
+            }
+
+
             //RichText richText = "<INPUT TYPE=\"IMAGE\" SRC=\"javascript:alert('XSS');\">";
             //string ss = richText;
             ////var policy = policyFactory.CreatePolicy("json").Result;
@@ -136,36 +147,6 @@ namespace AntiXssUF.TestSite.Controllers
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             html = new StringBuilder();
-            FilterAttacks(@"<IMG
-SRC
-=
-""
-j
-a
-v
-a
-s
-c
-r
-i
-p
-t
-:
-a
-l
-e
-r
-t
-(
-'
-X
-S
-S
-'
-)
-""
->
-", s => s.IndexOf("<img", StringComparison.OrdinalIgnoreCase) == -1);
             FilterAttacks("<IMG SRC=java\0script:alert(\"XSS\")>", str => str.IndexOf("<img", StringComparison.OrdinalIgnoreCase) == -1);
             testCssAttacks();
             testHrefAttacks();
@@ -184,9 +165,9 @@ S
             return View();
         }
         [HttpPost]
-        public IActionResult Test(RichText richText)
+        public IActionResult Test(TestModel model)
         {
-            ViewBag.html = richText?.ToString();
+            ViewBag.html = model?.RichText?.ToString();
             return View();
         }
 

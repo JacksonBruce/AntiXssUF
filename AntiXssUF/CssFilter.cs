@@ -29,11 +29,8 @@ namespace Ufangx.Xss
             if (attr == null) return false;
             var property = Policy.CssProperty(attr.Name);
             if (property == null) return false;
-            if (attr.IsShorthand)
-            {
-                return property.Shorthands.All(e => Policy.ValidateAttribute(Policy.CssProperty(e), attr.Value));
-            }
-            return Policy.ValidateAttribute(property, attr.Value);
+
+            return Policy.ValidateAttribute(property, attr.Value) || (property.Shorthands?.Any(shorthandPropertyName => Policy.ValidateAttribute(Policy.CssProperty(shorthandPropertyName), attr.Value)) ?? false);
         }
 
         protected virtual string Filters(ICssStyleSheet cssStyleSheet)

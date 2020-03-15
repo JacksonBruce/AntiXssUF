@@ -20,18 +20,17 @@ namespace Ufangx.Xss
         }
         public virtual IServiceCollection Services { get; }
         IServiceProvider _serviceProvider;
-        internal virtual IServiceProvider ServiceProvider => _serviceProvider ?? (_serviceProvider = Services.BuildServiceProvider());
+        internal virtual IServiceProvider ServiceProvider => _serviceProvider ??= Services.BuildServiceProvider();
 
         private XssFilterBuilder AddSchemeHelper<TPolicy>(string name, Func<Task<string>> configure)
            where TPolicy : class, IFilterPolicy
         {
             Services.Configure<FilterPolicyOptions>(o =>
-            {
                 o.AddScheme(name, scheme => {
                     scheme.PolicyType = typeof(TPolicy);
                     scheme.GetConfig = configure;
-                });
-            });
+                })
+            );
             Services.AddSingleton<TPolicy>();
             return this;
         }

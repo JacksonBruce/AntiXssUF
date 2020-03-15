@@ -1083,8 +1083,8 @@
   ],
   "TagRules": [
     {
-      
-      "Action": 2,
+
+      "Action": "validate",
       "Name": "html"
     },
     {

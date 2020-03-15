@@ -5,7 +5,7 @@ using Ufangx.Xss;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    public static class ServiceCollectionExtensions
+    public static class AntiXssUFServiceCollectionExtensions
     {
         public static XssFilterBuilder AddXssFilter(this IServiceCollection services, Action<FilterPolicyOptions> configureOptions=null) {
             if (services is null)

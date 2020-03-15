@@ -85,10 +85,8 @@ namespace Ufangx.Xss
 
         FilterRegExp[] GetRegexList(XElement e)
         {
-            //char regexpBegin = '^', regexpEnd = '$';
-            var regExpListNode = e.Element("regexp-list");
-            IEnumerable<XElement> nodes;
-            if (regExpListNode == null || (nodes = regExpListNode.Elements("regexp")) == null || nodes.Count() == 0)
+            IEnumerable<XElement> nodes = e?.Element("regexp-list")?.Elements("regexp");
+            if (nodes==null || nodes.Count() == 0)
             {
                 return null;
             }
@@ -99,10 +97,9 @@ namespace Ufangx.Xss
                     select new FilterRegExp() { Name = name, Value = value }).ToArray();
         }
         string[] GetLiteralList(XElement e)
-        {
-            var regExpListNode = e.Element("literal-list");
-            IEnumerable<XElement> nodes;
-            if (regExpListNode == null || (nodes = regExpListNode.Elements("literal")) == null || nodes.Count() == 0)
+        { 
+            IEnumerable<XElement> nodes= e?.Element("literal-list")?.Elements("literal");
+            if (nodes == null || nodes.Count() == 0)
             {
                 return null;
             }
@@ -130,36 +127,30 @@ namespace Ufangx.Xss
         }
         Dictionary<string, PolicyHtmlAttribute> ParseHtmlAttributes(XElement e)
         {
-
-            IEnumerable<XElement> elements = e.Elements("attribute");
+            IEnumerable<XElement> elements = e?.Elements("attribute");
             if (elements == null) return null;
             Dictionary<string, PolicyHtmlAttribute> attrs = new Dictionary<string, PolicyHtmlAttribute>(StringComparer.OrdinalIgnoreCase);
-            Func<string, PolicyHtmlAttributeOnInvalid> ParseOnInvalid = s => { PolicyHtmlAttributeOnInvalid tmp; return s != null && Enum.TryParse<PolicyHtmlAttributeOnInvalid>(s, out tmp) ? tmp : PolicyHtmlAttributeOnInvalid.RemoveAttribute; };
             foreach (var node in elements)
             {
-                String name = Attr(node, "name");
-                if (string.IsNullOrWhiteSpace(name)) continue;
-                PolicyHtmlAttribute attr = new PolicyHtmlAttribute(name);
-                attr.OnInvalid = ParseOnInvalid(Attr(node, "onInvalid"));
-                attr.Description = Attr(node, "description");
-                attr.AllowedRegExp = GetRegexList(node);
-                attr.AllowedValues = GetLiteralList(node);
-                string key = attr.Name.ToLower();
-                if (!attrs.ContainsKey(key))
-                { attrs.Add(key, attr); }
+                string key;
+                var name = Attr(node, "name");
+                if (string.IsNullOrWhiteSpace(name) || attrs.ContainsKey(key=name.Trim().ToLower())) continue;
+                attrs.Add(key, new PolicyHtmlAttribute(name)
+                {
+                    OnInvalid = Enum.TryParse(Attr(node, "onInvalid") ?? string.Empty, true, out PolicyHtmlAttributeOnInvalid onInvalid) ? onInvalid : PolicyHtmlAttributeOnInvalid.RemoveAttribute,
+                    Description = Attr(node, "description"),
+                    AllowedRegExp = GetRegexList(node),
+                    AllowedValues = GetLiteralList(node)
+                });
             }
             return attrs;
         }
         Dictionary<string, PolicyHtmlTag> ParseHtmlTags(XElement e)
         {
-            IEnumerable<XElement> elements = e.Elements("tag");
+            IEnumerable<XElement> elements = e?.Elements("tag");
             if (elements == null) return null;
             Dictionary<string, PolicyHtmlTag> tags = new Dictionary<string, PolicyHtmlTag>(StringComparer.OrdinalIgnoreCase);
-            Func<string, PolicyHtmlTagAction> ParseAction = s =>
-            {
-                PolicyHtmlTagAction action;
-                return Enum.TryParse<PolicyHtmlTagAction>(s, out action) ? action : PolicyHtmlTagAction.Remove;
-            };
+           
             foreach (var tagNode in elements)
             {
                 string name = Attr(tagNode, "name"), key;
@@ -167,9 +158,8 @@ namespace Ufangx.Xss
                 tags.Add(key
                     , new PolicyHtmlTag(ParseHtmlAttributes(tagNode))
                     {
-                        Name = name
-                        ,
-                        Action = ParseAction(Attr(tagNode, "action"))
+                        Name = name,
+                        Action = Enum.TryParse(Attr(tagNode, "action")??string.Empty, true, out PolicyHtmlTagAction action) ? action : PolicyHtmlTagAction.Remove
                     });
 
             }
@@ -186,31 +176,30 @@ namespace Ufangx.Xss
             {
                 string name = Attr(node, "name"), key;
                 if (string.IsNullOrWhiteSpace(name) || properties.ContainsKey(key = name.Trim().ToLower())) continue;
-                PolicyCssProperty attr = new PolicyCssProperty(name);
-                attr.Description = Attr(node, "description");
-                attr.AllowedRegExp = GetRegexList(node);
-                attr.AllowedValues = GetLiteralList(node);
-                attr.Shorthands = node.Element("shorthand-list") == null ? null : (from n in node.Element("shorthand-list").Elements("shorthand")
-                                                                                   let shn = Attr(n, "name")
-                                                                                   where shn != null && shn.Length > 0
-                                                                                   select shn).ToArray();
-
-                properties.Add(key, attr);
+                var shorthands = node?.Element("shorthand-list")?.Elements("shorthand");
+                properties.Add(key, new PolicyCssProperty(name)
+                {
+                    Description = Attr(node, "description"),
+                    AllowedRegExp = GetRegexList(node),
+                    AllowedValues = GetLiteralList(node),
+                    Shorthands = shorthands == null ? null : (from n in shorthands
+                                                              let shn = Attr(n, "name")
+                                                              where shn != null && shn.Length > 0
+                                                              select shn).ToArray()
+                });
             }
 
             return properties;
         }
         string Attr(XElement e, string name)
         {
-            XAttribute attr = e == null || string.IsNullOrEmpty(name) ? null : e.Attribute(name);
+            XAttribute attr = string.IsNullOrWhiteSpace(name) ? null : e?.Attribute(name);
             return attr == null ? null : HttpUtility.HtmlDecode(attr.Value);
         }
         string Value(XElement e)
         {
-            return e == null ? null : e.Value;
+            return e?.Value;
         }
-
-
 
         #endregion
 
