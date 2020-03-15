@@ -103,7 +103,7 @@
 
         public IActionResult Test(string source)
         {
-            var policy = new AntisamyPolicy();
+            var policy = new AntisamyPolicy();//json格式用JsonFilterPolicy类
             policy.Init(File.ReadAllText("c:/www/resources/antisamy-ebay.xml"),"ebay");
             var filter=new HtmlFilter(policy);
             var clean = filter.Filters(source);//过滤危险代码
