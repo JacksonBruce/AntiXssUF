@@ -76,5 +76,39 @@
         }
         
 ```
+
+### 不使用依赖注入，直接使用
+
+1. 使用内置的默认策略
+
+```
+        //使用参数绑定过滤策略，这里需要添加模型绑定器
+        public IActionResult Test(RichText richText)
+        {
+            string clean = richText;//这里自动过滤危险代码
+            return Content(clean??string.Empty);
+        }
+        //这里不需要添加模型绑定器
+        public IActionResult Test(string source)
+        {
+            RichText richText=source;
+            string clean = richText;//这里自动过滤危险代码
+            return Content(clean??string.Empty);
+        }
         
+```
+2. 指定策略
+
+```
+
+        public IActionResult Test(string source)
+        {
+            var policy = new AntisamyPolicy();
+            policy.Init(File.ReadAllText("c:/www/resources/antisamy-ebay.xml"),"ebay");
+            var filter=new HtmlFilter(policy);
+            var clean = filter.Filters(source);//过滤危险代码
+            return Content(clean??string.Empty);
+        }
+        
+```
         
