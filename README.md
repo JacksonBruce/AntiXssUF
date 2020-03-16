@@ -1,13 +1,14 @@
 AntiXssUF
 =========
 
-[![NuGet version](https://badge.fury.io/nu/AntiXssUF.svg)](https://badge.fury.io/nu/AntiXssUF)[![Build status](https://ci.appveyor.com/api/projects/status/9nsqv2f81gcnwndg?svg=true)](https://ci.appveyor.com/project/JacksonBruce/antixssuf)
+[![NuGet version](https://badge.fury.io/nu/AntiXssUF.svg)](https://badge.fury.io/nu/AntiXssUF) [![Build status](https://ci.appveyor.com/api/projects/status/9nsqv2f81gcnwndg?svg=true)](https://ci.appveyor.com/project/JacksonBruce/antixssuf) [![GitHub license](https://img.shields.io/github/license/JacksonBruce/AntiXssUF)](https://github.com/JacksonBruce/AntiXssUF/blob/master/LICENSE) 
+[netstandard2.1](https://img.shields.io/badge/netstandard-2.1-brightgreen)](https://img.shields.io/badge/netstandard-2.1-brightgreen) 
 
 跨站脚本攻击（XSS）过滤器，以白名单的过滤策略，支持多种过滤策略，可以根据业务场景选择适合的过滤策略，或者根据用户角色动态绑定过滤策略，支持OwaspAntisamy项目的配置，支持json格式的配置；
 使用方法：
 
 . 在启动类Startup.cs上添加依赖注入
-================================    
+---------------------------------  
 
 ```C#
         public void ConfigureServices(IServiceCollection services)
@@ -33,7 +34,7 @@ AntiXssUF
 ```
         
 . 在构造函数注入依赖
-===================      
+-------------------     
 
 ```C#
         //依赖注入
@@ -51,7 +52,7 @@ AntiXssUF
 ```
 
 . 使用模型绑定器
-===============
+---------------
 
 ```C#
         //模型绑定过滤策略
@@ -65,7 +66,7 @@ AntiXssUF
 ```
 
 . 在控制器上直接使用
-===================
+-------------------
 
 ```C#
         public IActionResult Test(TestModel model)
@@ -83,7 +84,7 @@ AntiXssUF
 ```
 
 不使用依赖注入，直接使用
-======================
+----------------------
 
 1. 使用内置的默认策略
 
