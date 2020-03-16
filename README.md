@@ -1,7 +1,7 @@
 AntiXssUF
 =========
 
-[![Build status](https://ci.appveyor.com/api/projects/status/9nsqv2f81gcnwndg?svg=true)](https://ci.appveyor.com/project/JacksonBruce/antixssuf)
+[![NuGet version](https://badge.fury.io/nu/AntiXssUF.svg)](https://badge.fury.io/nu/AntiXssUF)[![Build status](https://ci.appveyor.com/api/projects/status/9nsqv2f81gcnwndg?svg=true)](https://ci.appveyor.com/project/JacksonBruce/antixssuf)
 
 跨站脚本攻击（XSS）过滤器，以白名单的过滤策略，支持多种过滤策略，可以根据业务场景选择适合的过滤策略，或者根据用户角色动态绑定过滤策略，支持OwaspAntisamy项目的配置，支持json格式的配置；
 使用方法：
