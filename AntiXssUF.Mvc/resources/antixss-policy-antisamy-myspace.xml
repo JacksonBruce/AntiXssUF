@@ -8,12 +8,12 @@ http://www.w3.org/TR/html401/struct/global.html
 	
 	
 <anti-samy-rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:noNamespaceSchemaLocation="antisamy.xsd">
+		xsi:noNamespaceSchemaLocation="antixss-policy.xsd">
 	
 	<directives>
 		<directive name="omitXmlDeclaration" value="true"/>
 		<directive name="omitDoctypeDeclaration" value="true"/>
-		<directive name="maxInputSize" value="200000"/>
+		<directive name="maxInputSize" value="15000"/>
 		<directive name="useXHTML" value="true"/>
 		<directive name="formatOutput" value="true"/>
 		
@@ -21,7 +21,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		remember, this won't work for relative URIs - AntiSamy doesn't
 		know anything about the URL or your web structure
 		-->
-		<directive name="embedStyleSheets" value="true"/> 
+		<directive name="embedStyleSheets" value="false"/> 
 		
 	</directives>
 	
@@ -34,6 +34,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		name or names. Multiple class names must be separated by white 
 		space characters.
 		-->
+		
 		<regexp name="colorNameOrCode" value="(#[0-9a-fA-F]{6}|[a-zA-Z]{1,20})"/>
 		<regexp name="number" value="[0-9]+"/>
 		<regexp name="anything" value=".*"/>
@@ -43,7 +44,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="htmlTitle" value="[\p{L}\p{N}\s-_',:\[\]!\./\\\(\)]*"/> <!-- force non-empty with a '+' at the end instead of '*' -->
 		<regexp name="htmlClass" value="[a-zA-Z0-9\s,-_]+"/>
 
-		<regexp name="onsiteURL" value="([\p{L}\p{N}\\/\.\?=\#&amp;;\-_~]+|\#(\w)+)"/>
+		<regexp name="onsiteURL" value="([\p{L}\p{N}\\/\.\?=\#&amp;;\-~]+|\#(\w)+)"/>
 		<regexp name="offsiteURL" value="(\s)*((ht|f)tp(s?)://|mailto:)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*"/>
 		
 		<regexp name="boolean" value="(true|false)"/>
@@ -84,7 +85,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="cssOffsiteUri" value="url\((\s)*((ht|f)tp(s?)://)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*\)"/>
 		
 		<!--  This is for comments within CSS (ex. /* comment */) -->
-		<regexp name="cssCommentText" value="[\p{L}\p{N}\-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:\[\]&quot;']+"/>
+		<regexp name="cssCommentText" value="[\p{L}\p{N}-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:\[\]&quot;']+"/>
 		
 		<regexp name="integer" value="(-|\+)?[0-9]+"/>
 		<regexp name="number" value="(-|\+)?([0-9]+(.[0-9]+)?)"/>		
@@ -468,22 +469,6 @@ http://www.w3.org/TR/html401/struct/global.html
 	
 	
 	<tag-rules>
-	
-		<!-- You can mess with this stuff if you know what you're doing -->
-		
-		<tag name="html" action="validate"/>
-		
-		<tag name="body" action="validate">
-			<attribute name="bgcolor"/>
-		</tag>
-		
-		<tag name="meta" action="filter"/>
-
-		<tag name="head" action="validate"/>
-
-		<!-- since we're validating the style sheets this is safe to have - switch to "truncate" if the user's html will appear in the html body -->
-		<tag name="title" action="truncate"/>
-
 
 		<!-- Tags related to JavaScript -->
 
@@ -596,7 +581,7 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal-list>
 					<literal value="hidden"/>
 					<literal value="text"/>
-					<literal value="password"/>
+					<!-- <literal value="password"/>  --> <!--  no user profiles should have password fields -->
 					<literal value="radio"/>
 					<literal value="checkbox"/>
 					<literal value="submit"/>
@@ -750,8 +735,6 @@ http://www.w3.org/TR/html401/struct/global.html
 			
 		</tag>
 
-		<tag name="map" action="validate"/>
-
 		<!-- base tag removed per demo - this could be enabled with literal-list values you allow -->
 		<!-- 
 		<tag name="base" action="validate">
@@ -777,14 +760,8 @@ http://www.w3.org/TR/html401/struct/global.html
 		<tag name="div" action="validate">
 			<attribute name="align"/>
 		</tag>
-		
-		<!-- <attribute name="id"/>  what could an attacker do if they could overwrite an existing div definition? prolly something bad -->
-		<!-- <attribute name="class"/> what could an attacker do if they could specify any class in the namespace? prolly something bad -->
 
-		
-		
-		
-		
+	
 		<!-- Image & image related tags -->
 		
 		<tag name="img" action="validate">
@@ -2409,7 +2386,11 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="inherit"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>
 				<regexp name="integer"/>
 			</regexp-list>
 		</property>
@@ -2523,7 +2504,11 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="auto"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>		
 			</regexp-list>
 		</property>
 		<property name="play-during" default="auto" description="Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken.">

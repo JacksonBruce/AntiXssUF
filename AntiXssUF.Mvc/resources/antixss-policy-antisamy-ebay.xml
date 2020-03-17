@@ -8,12 +8,12 @@ http://www.w3.org/TR/html401/struct/global.html
 	
 	
 <anti-samy-rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:noNamespaceSchemaLocation="antisamy.xsd">
+		xsi:noNamespaceSchemaLocation="antixss-policy.xsd">
 	
 	<directives>
 		<directive name="omitXmlDeclaration" value="true"/>
 		<directive name="omitDoctypeDeclaration" value="true"/>
-		<directive name="maxInputSize" value="200000"/>
+		<directive name="maxInputSize" value="20001"/>
 		<directive name="useXHTML" value="true"/>
 		<directive name="formatOutput" value="true"/>
 		
@@ -21,7 +21,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		remember, this won't work for relative URIs - AntiSamy doesn't
 		know anything about the URL or your web structure
 		-->
-		<directive name="embedStyleSheets" value="true"/> 
+		<directive name="embedStyleSheets" value="false"/> 
 		
 	</directives>
 	
@@ -74,7 +74,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="cssPsuedoElementExclusion" value=""/>
 		
 		<!--  This is for attribute selectors (ex. foo[attr=value] { ... } -->
-		<regexp name="cssAttributeSelector" value="\[[a-zA-Z0-9\-_]+((=|~=|\|=){1}[a-zA-Z0-9\-_]+){1}\]"/>
+		<regexp name="cssAttributeSelector" value="\[[a-zA-Z0-9-_]+((=|~=|\|=){1}[a-zA-Z0-9\-_]+){1}\]"/>
 		
 		<!--  This is to list out any attribute names that are *not* valid -->
 		<regexp name="cssAttributeExclusion" value=""/>
@@ -84,7 +84,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="cssOffsiteUri" value="url\((\s)*((ht|f)tp(s?)://)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*\)"/>
 		
 		<!--  This is for comments within CSS (ex. /* comment */) -->
-		<regexp name="cssCommentText" value="[\p{L}\p{N}\-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:\[\]&quot;']+"/>
+		<regexp name="cssCommentText" value="[\p{L}\p{N}-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:\[\]&quot;']+"/>
 		
 		<regexp name="integer" value="(-|\+)?[0-9]+"/>
 		<regexp name="number" value="(-|\+)?([0-9]+(.[0-9]+)?)"/>		
@@ -174,12 +174,6 @@ http://www.w3.org/TR/html401/struct/global.html
 				<regexp name="onsiteURL"/>
 				<regexp name="offsiteURL"/>
 			</regexp-list>
-			<literal-list>
-				<literal value="javascript:history.go(0)"/>
-				<literal value="javascript:history.go(-1)"/>
-				<literal value="javascript:void(0)"/>
-				<literal value="javascript:location.reload()"/>
-			</literal-list>
 		</attribute>
 		
 		<attribute name="name">
@@ -469,22 +463,6 @@ http://www.w3.org/TR/html401/struct/global.html
 	
 	<tag-rules>
 	
-		<!-- You can mess with this stuff if you know what you're doing -->
-		
-		<tag name="html" action="validate"/>
-		
-		<tag name="body" action="validate">
-			<attribute name="bgcolor"/>
-		</tag>
-		
-		<tag name="meta" action="filter"/>
-
-		<tag name="head" action="validate"/>
-
-		<!-- since we're validating the style sheets this is safe to have - switch to "truncate" if the user's html will appear in the html body -->
-		<tag name="title" action="truncate"/>
-
-
 		<!-- Tags related to JavaScript -->
 
 		<tag name="script" action="remove"/>
@@ -509,167 +487,7 @@ http://www.w3.org/TR/html401/struct/global.html
 				</regexp-list>
 			</attribute>
 		</tag>
-		
 
-		<!--
-			If you wish to enable any of the form related tags, change the tag's action below from "filter" or "remove" to "validate". The attributes have been 
-			hardened so this is safe to do, if it's something you want to allow. Beware the <><ing possibilities!
-		 -->
-			
-		<tag name="form" action="validate">
-			
-			<attribute name="action">
-				<regexp-list>
-					<regexp name="onsiteURL"/>
-					<regexp name="offsiteURL"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="name"/>
-			
-			<attribute name="autocomplete"/>
-			
-			<attribute name="method">
-				<literal-list>
-					<literal value="post"/>
-					<literal value="get"/>
-				</literal-list>
-			</attribute>
-			
-		</tag>
-		
-		<tag name="button" action="validate">
-			<attribute name="name"/>
-			<attribute name="value">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="disabled"/>
-			<attribute name="accesskey"/>
-			<attribute name="type">
-				<literal-list>
-					<literal value="submit"/>
-					<literal value="reset"/>
-					<literal value="button"/>
-				</literal-list>
-			</attribute>
-		</tag>
-		
-		<tag name="input" action="validate">
-			
-			<attribute name="name"/>
-			
-			<attribute name="size"/>
-			
-			<attribute name="maxlength">
-				<regexp-list>
-					<regexp name="number"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="autocomplete"/>
-			
-			<attribute name="checked">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="alt"/>
-			
-			<attribute name="src">
-				<regexp-list>
-					<regexp name="onsiteURL"/>
-					<regexp name="offsiteURL"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="usemap">
-				<regexp-list>
-					<regexp name="onsiteURL"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="type">
-				<literal-list>
-					<literal value="hidden"/>
-					<literal value="text"/>
-					<literal value="password"/>
-					<literal value="radio"/>
-					<literal value="checkbox"/>
-					<literal value="submit"/>
-					<literal value="button"/>
-					<literal value="image"/>
-					<literal value="file"/>
-					<literal value="reset"/>
-				</literal-list>
-			</attribute>
-			
-			<attribute name="value">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="disabled"/>
-			<attribute name="readonly"/>
-			<attribute name="accesskey"/>
-			
-			<attribute name="border"/>
-			
-		</tag>
-		
-		<tag name="select" action="validate">
-
-			<attribute name="name"/>
-			<attribute name="disabled"/>
-			
-			<attribute name="multiple">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="size"/>
-			
-		</tag>
-		
-		<tag name="option" action="validate">
-		
-			<attribute name="disabled"/>
-			
-			<attribute name="value">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="label">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-			
-			<attribute name="selected">
-				<regexp-list>
-					<regexp name="anything"/>
-				</regexp-list>
-			</attribute>
-		</tag>
-		
-		<tag name="textarea" action="validate">
-			<attribute name="rows"/>
-			<attribute name="cols"/>
-			<attribute name="name"/>
-			<attribute name="disabled"/>
-			<attribute name="readonly"/>
-			<attribute name="accesskey"/>
-		</tag>
-		
-		
-		
 		
 		<!-- All formatting tags -->
 		
@@ -705,7 +523,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<tag name="hr" action="validate"/>
 		<tag name="br" action="validate"/>
 		
-		<tag name="col" action="validate"/>
+		<!--tag name="col" action="validate"/-->
 		
 		<tag name="font" action="validate">
 			<attribute name="color">
@@ -781,10 +599,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<!-- <attribute name="id"/>  what could an attacker do if they could overwrite an existing div definition? prolly something bad -->
 		<!-- <attribute name="class"/> what could an attacker do if they could specify any class in the namespace? prolly something bad -->
 
-		
-		
-		
-		
+
 		<!-- Image & image related tags -->
 		
 		<tag name="img" action="validate">
@@ -2409,22 +2224,15 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="inherit"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>
 				<regexp name="integer"/>
 			</regexp-list>
 		</property>
-		<property name="clip" default="auto" description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
-			<category-list>
-				<category value="visual"/>
-			</category-list>
-			<literal-list>
-				<literal value="auto"/>			
-				<literal value="inherit"/>
-			</literal-list>
-			<regexp-list>
-				<regexp name="length"/>
-			</regexp-list>
-		</property>
+
 		<property name="cursor" default="auto" description="This property specifies the type of cursor to be displayed for the pointing device.">
 			<category-list>
 				<category value="visual"/>
@@ -2523,7 +2331,11 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="auto"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>
 			</regexp-list>
 		</property>
 		<property name="play-during" default="auto" description="Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken.">

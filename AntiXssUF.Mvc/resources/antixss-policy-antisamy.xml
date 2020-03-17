@@ -8,7 +8,7 @@ http://www.w3.org/TR/html401/struct/global.html
 	
 	
 <anti-samy-rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:noNamespaceSchemaLocation="antisamy.xsd">
+		xsi:noNamespaceSchemaLocation="antixss-policy.xsd">
 	
 	<directives>
 		<directive name="omitXmlDeclaration" value="true"/>
@@ -21,7 +21,9 @@ http://www.w3.org/TR/html401/struct/global.html
 		remember, this won't work for relative URIs - AntiSamy doesn't
 		know anything about the URL or your web structure
 		-->
-		<directive name="embedStyleSheets" value="true"/> 
+		<directive name="embedStyleSheets" value="false"/> 
+		<directive name="connectionTimeout" value="5000"/>
+		<directive name="maxStyleSheetImports" value="3"/>
 		
 	</directives>
 	
@@ -34,6 +36,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		name or names. Multiple class names must be separated by white 
 		space characters.
 		-->
+		
 		<regexp name="colorNameOrCode" value="(#[0-9a-fA-F]{6}|[a-zA-Z]{1,20})"/>
 		<regexp name="number" value="[0-9]+"/>
 		<regexp name="anything" value=".*"/>
@@ -50,19 +53,19 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="singlePrintable" value="[a-zA-Z0-9]{1}"/> <!-- \w allows the '_' character -->
 
 		<!-- This is for elements (ex: elemName { ... }) -->
-		<regexp name="cssElementSelector" value="[a-zA-Z0-9\-_]+|\*"/>
+		<regexp name="cssElementSelector" value="[a-zA-Z0-9-_]+|\*"/>
 		
 		<!--  This is to list out any element names that are *not* valid -->
 		<regexp name="cssElementExclusion" value=""/>
 		
 		<!--  This if for classes (ex: .className { ... }) -->
-		<regexp name="cssClassSelector" value="\.[a-zA-Z0-9\-_]+"/>
+		<regexp name="cssClassSelector" value="\.[a-zA-Z0-9-_]+"/>
 
 		<!--  This is to list out any class names that are *not* valid -->
 		<regexp name="cssClassExclusion" value=""/>
 		
 		<!--  This is for ID selectors (ex: #myId { ... } -->
-		<regexp name="cssIDSelector" value="#[a-zA-Z0-9\-_]+"/>
+		<regexp name="cssIDSelector" value="#[a-zA-Z0-9-_]+"/>
 		
 		<!--  This is to list out any IDs that are *not* valid - FIXME: What should the default be to avoid div hijacking? *? -->
 		<regexp name="cssIDExclusion" value=""/>
@@ -84,7 +87,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<regexp name="cssOffsiteUri" value="url\((\s)*((ht|f)tp(s?)://)[\p{L}\p{N}]+[~\p{L}\p{N}\p{Zs}\-_\.@#$%&amp;;:,\?=/\+!]*(\s)*\)"/>
 		
 		<!--  This is for comments within CSS (ex. /* comment */) -->
-		<regexp name="cssCommentText" value="[\p{L}\p{N}\-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:\[\]&quot;']+"/>
+		<regexp name="cssCommentText" value="[\p{L}\p{N}-_,\/\\\.\s\(\)!\?\=\$#%\^&amp;:&quot;']+"/>
 		
 		<regexp name="integer" value="(-|\+)?[0-9]+"/>
 		<regexp name="number" value="(-|\+)?([0-9]+(.[0-9]+)?)"/>		
@@ -705,7 +708,7 @@ http://www.w3.org/TR/html401/struct/global.html
 		<tag name="hr" action="validate"/>
 		<tag name="br" action="validate"/>
 		
-		<tag name="col" action="validate"/>
+		
 		
 		<tag name="font" action="validate">
 			<attribute name="color">
@@ -2388,18 +2391,6 @@ http://www.w3.org/TR/html401/struct/global.html
 				<regexp name="length"/>
 			</regexp-list>
 		</property>
-		<property name="clip" default="auto" description="The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'.">
-			<category-list>
-				<category value="visual"/>
-			</category-list>
-			<literal-list>
-				<literal value="auto"/>			
-				<literal value="inherit"/>
-			</literal-list>
-			<regexp-list>
-				<regexp name="length"/>
-			</regexp-list>
-		</property>
 		<property name="counter-increment" default="none" description="The 'counter-increment' property accepts one or more names of counters (identifiers), each one optionally followed by an integer.">
 			<category-list>
 				<category value="all"/>
@@ -2409,7 +2400,11 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="inherit"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>
 				<regexp name="integer"/>
 			</regexp-list>
 		</property>
@@ -2523,7 +2518,11 @@ http://www.w3.org/TR/html401/struct/global.html
 				<literal value="auto"/>
 			</literal-list>
 			<regexp-list>
-				<regexp name="cssId"/>
+				<regexp name="cssElementSelector"/>
+				<regexp name="cssClassSelector"/>
+				<regexp name="cssIDSelector"/>
+				<!--regexp name="cssPsuedoElementSelector"/-->
+				<regexp name="cssAttributeSelector"/>
 			</regexp-list>
 		</property>
 		<property name="play-during" default="auto" description="Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken.">

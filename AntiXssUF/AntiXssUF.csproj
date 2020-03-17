@@ -4,6 +4,16 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>AntiXssUF</AssemblyName>
     <RootNamespace>Ufangx.Xss</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>xss anit policy filter</Description>
+    <Authors>Jackson.bruce</Authors>
+    <Company>ufangx</Company>
+    <Copyright>Copyright (c) 2020 Jackson.Bruce</Copyright>
+    <PackageProjectUrl>https://github.com/JacksonBruce/AntiXssUF</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JacksonBruce/AntiXssUF.git</RepositoryUrl>
+    <PackageTags>Anti Xss .NETStandard</PackageTags>
+    <PackageReleaseNotes>https://github.com/JacksonBruce/AntiXssUF/blob/master/README.md</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

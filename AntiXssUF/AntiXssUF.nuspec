@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>ufangx</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <title>$title$</title>
+    <description>$author$</description>
+    <copyright>$copyright$</copyright>
+    <licenseUrl>https://github.com/JacksonBruce/AntiXssUF/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/JacksonBruce/AntiXssUF</projectUrl>
+    <releaseNotes>https://github.com/JacksonBruce/AntiXssUF/blob/master/README.md</releaseNotes>
+    <tags>Anti Xss .NETStandard </tags>
+    <repository url="https://github.com/JacksonBruce/AntiXssUF" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
+        <dependency id="AngleSharp.Css" version="0.13.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Caching.Abstractions" version="3.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Options" version="3.1.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+
+    <file src="netstandard2.1\*.dll" target="lib\netstandard2.1" />
+    <file src="resources\*.*" target="content\resources" />
+  </files>
+</package>

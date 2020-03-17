@@ -9,6 +9,7 @@ using AntiXssUF.TestSite.Models;
 using Ufangx.Xss;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AntiXssUF.TestSite.Controllers
 {
@@ -22,6 +23,11 @@ namespace AntiXssUF.TestSite.Controllers
            
             _logger = logger;
             this.policyFactory = policyFactory;
+        }
+        public async Task<IActionResult> Test(string source) {
+            var filter=await policyFactory.CreateHtmlFilter("ebay");
+            var clean = filter.Filters(source);
+            return Content(clean);
         }
         void FilterAttacks(RichText richText, Func<string, bool> fn, [CallerMemberName] string propertyName = null)
         {
@@ -167,7 +173,8 @@ namespace AntiXssUF.TestSite.Controllers
         [HttpPost]
         public IActionResult Test(TestModel model)
         {
-            ViewBag.html = model?.RichText?.ToString();
+            var clean = model?.RichText?.ToString() ?? string.Empty;
+            ViewBag.html = clean;
             return View();
         }
 

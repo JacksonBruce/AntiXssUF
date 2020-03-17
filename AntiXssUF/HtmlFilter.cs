@@ -63,11 +63,11 @@ namespace Ufangx.Xss
             });
             Regex regex = new Regex($"^({Regex.Escape("<!doctype")})|({Regex.Escape("<html")})|({Regex.Escape("<body")})", RegexOptions.IgnoreCase);
             var match = regex.Match(html);
-            var doc = match.Success ? htmlParser.ParseDocument(html) : htmlParser.ParseDocument("");
+            var doc = match.Success ? htmlParser.ParseDocument(html) : htmlParser.ParseDocument("<html><head></head><body></body></html>");
             var container = match.Success ? doc.DocumentElement : doc.Body;
             if (!match.Success) { container.InnerHtml = html; }
             FiltersTags(container.ChildNodes);
-            return match.Success ? (match.Groups[3].Success ? doc.Body.OuterHtml : container.OuterHtml) : container.InnerHtml;
+            return container.HasChildNodes ? (match.Success ? (match.Groups[3].Success ? doc.Body?.OuterHtml : container.OuterHtml) : container.InnerHtml) : string.Empty;
         }
         #endregion
 
