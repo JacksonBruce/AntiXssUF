@@ -1,47 +1,37 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Web;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using AntiXssUF.TestSite.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ufangx.Xss;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Diagnostics;
 
-namespace AntiXssUF.TestSite.Controllers
+namespace Framework461Test
 {
-    public class HomeController : Controller
+
+    [TestClass]
+    public class UnitTest1
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IFilterPolicyFactory policyFactory;
-        private StringBuilder html;
-        public HomeController(ILogger<HomeController> logger, IFilterPolicyFactory policyFactory)
-        {
-            _logger = logger;
-            this.policyFactory = policyFactory;
-        }
-        public async Task<IActionResult> Test(string source) {
-            var filter=await policyFactory.CreateHtmlFilter("ebay");
-            var clean = filter.Filters(source);
-            return Content(clean);
-        }
-        StringBuilder stringBuilder = new StringBuilder();
         void FilterAttacks(RichText richText, Func<string, bool> fn, [CallerMemberName] string propertyName = null)
         {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.Append($"\n==== in {propertyName} ==================================================\n原文:\n{richText.Source}\n");
 
-            stringBuilder.Append($"\n==== in {propertyName} ==================================================\n原文:\n{richText.Source}\n");
             stringBuilder.Append("过滤\n");
             string clean = richText.ToString();
             stringBuilder.Append(clean);
             var isTrue = fn(clean);
 
             stringBuilder.Append($"\n状态：{isTrue}");
-
+            Console.WriteLine(stringBuilder.ToString());
+            Assert.IsTrue(isTrue);
         }
-        void testScriptAttacks()
+
+        [TestMethod]
+        public void testScriptAttacks()
         {
             FilterAttacks("<script src=\"/test.js\"></script>", str => str.IndexOf("script", StringComparison.OrdinalIgnoreCase) == -1);
             FilterAttacks("test<script>alert(document.cookie)</script>", str => str.IndexOf("script", StringComparison.OrdinalIgnoreCase) == -1);
@@ -53,7 +43,9 @@ namespace AntiXssUF.TestSite.Controllers
             FilterAttacks("<iframe src=http://ha.ckers.org/scriptlet.html <", str => str.IndexOf("<iframe", StringComparison.OrdinalIgnoreCase) == -1);
             FilterAttacks("<INPUT TYPE=\"IMAGE\" SRC=\"javascript:alert('XSS');\">", str => str.IndexOf("src", StringComparison.OrdinalIgnoreCase) == -1);
         }
-        void testImgAttacks()
+
+        [TestMethod]
+        public void testImgAttacks()
         {
             FilterAttacks("<img src='http://www.myspace.com/img.gif'>", str => str.IndexOf("<img", StringComparison.OrdinalIgnoreCase) != -1);
             FilterAttacks("<img src=javascript:alert(document.cookie)>", str => str.IndexOf("<img", StringComparison.OrdinalIgnoreCase) == -1);
@@ -61,7 +53,7 @@ namespace AntiXssUF.TestSite.Controllers
                 str => str.IndexOf("<img", StringComparison.OrdinalIgnoreCase) == -1);
 
             FilterAttacks("<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>", str => string.IsNullOrEmpty(str));
-
+    
             FilterAttacks("<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>", str => string.IsNullOrEmpty(str));
 
             FilterAttacks("<IMG SRC=\"jav&#x0D;ascript:alert('XSS');\">", str => str.IndexOf("alert", StringComparison.OrdinalIgnoreCase) == -1);
@@ -71,8 +63,11 @@ namespace AntiXssUF.TestSite.Controllers
 
         }
 
+        [TestMethod]
         public void testHrefAttacks()
         {
+
+
             FilterAttacks("<LINK REL=\"stylesheet\" HREF=\"javascript:alert('XSS');\">", str => str.IndexOf("href") == -1);
             FilterAttacks("<LINK REL=\"stylesheet\" HREF=\"http://ha.ckers.org/xss.css\">", str => str.IndexOf("href") == -1);
 
@@ -120,8 +115,8 @@ namespace AntiXssUF.TestSite.Controllers
 
         }
 
-
-        void testCssAttacks()
+        [TestMethod]
+        public void testCssAttacks()
         {
             FilterAttacks("<div style=\"position:absolute\">", str => str.IndexOf("position") == -1);
             FilterAttacks("<style>b { position:absolute;color:red; }</style>", str => str.IndexOf("position") == -1);
@@ -130,59 +125,10 @@ namespace AntiXssUF.TestSite.Controllers
         }
 
 
-        public IActionResult Index()
+        [TestMethod]
+        public void TestAll()
         {
 
-
-
-            //RichText richText = "<INPUT TYPE=\"IMAGE\" SRC=\"javascript:alert('XSS');\">";
-            //string ss = richText;
-            ////var policy = policyFactory.CreatePolicy("DefaultPolicy").Result;
-            ////var str = Newtonsoft.Json.JsonConvert.SerializeObject(new
-            ////{
-            ////    policy.Directives,
-            ////    policy.CommonRegularExpressions,
-            ////    CommonAttributes = policy.CommonAttributes.Values.Select(e => new
-            ////    {
-            ////        e.Name,
-            ////        OnInvalid = e.OnInvalid == default(PolicyHtmlAttributeOnInvalid) ? null : e.OnInvalid.ToString(),
-            ////        AllowedRegExp = e.AllowedRegExp == null || e.AllowedRegExp.Length == 0 ? null : e.AllowedRegExp,
-            ////        AllowedValues = e.AllowedValues == null || e.AllowedValues.Length == 0 ? null : e.AllowedValues,
-            ////        Description = string.IsNullOrEmpty(e.Description) ? null : e.Description,
-            ////    }),
-            ////    CssRules = policy.CssRules.Values.Select(e => new
-            ////    {
-            ////        e.Name,
-            ////        Shorthands = e.Shorthands == null || e.Shorthands.Length == 0 ? null : e.Shorthands,
-            ////        AllowedRegExp = e.AllowedRegExp == null || e.AllowedRegExp.Length == 0 ? null : e.AllowedRegExp,
-            ////        AllowedValues = e.AllowedValues == null || e.AllowedValues.Length == 0 ? null : e.AllowedValues,
-            ////        Description = string.IsNullOrEmpty(e.Description) ? null : e.Description,
-            ////    }),
-            ////    GlobalAttributes = policy.GlobalAttributes.Values.Select(e => new
-            ////    {
-            ////        e.Name,
-            ////        OnInvalid = e.OnInvalid == default(PolicyHtmlAttributeOnInvalid) ? null : e.OnInvalid.ToString(),
-            ////        AllowedRegExp = e.AllowedRegExp == null || e.AllowedRegExp.Length == 0 ? null : e.AllowedRegExp,
-            ////        AllowedValues = e.AllowedValues == null || e.AllowedValues.Length == 0 ? null : e.AllowedValues,
-            ////        Description = string.IsNullOrEmpty(e.Description) ? null : e.Description,
-            ////    }),
-            ////    TagRules = policy.TagRules.Values.Select(tag => new
-            ////    {
-            ////        Action = tag.Action == default(PolicyHtmlTagAction) ? null : tag.Action.ToString(),
-            ////        tag.Name,
-            ////        AllowedAttributes = tag.AllowedAttributes == null || tag.AllowedAttributes.Values.Count == 0 ? null :
-            ////        tag.AllowedAttributes.Values.Select(e => new
-            ////        {
-            ////            e.Name,
-            ////            OnInvalid = e.OnInvalid == default(PolicyHtmlAttributeOnInvalid) ? null : e.OnInvalid.ToString(),
-            ////            AllowedRegExp = e.AllowedRegExp == null || e.AllowedRegExp.Length == 0 ? null : e.AllowedRegExp,
-            ////            AllowedValues = e.AllowedValues == null || e.AllowedValues.Length == 0 ? null : e.AllowedValues,
-            ////            Description = string.IsNullOrEmpty(e.Description) ? null : e.Description,
-            ////        }),
-
-            ////    })
-            ////}, new Newtonsoft.Json.JsonSerializerSettings() { NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore });
-            //////
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             FilterAttacks("<IMG SRC=java\0script:alert(\"XSS\")>", str => str.IndexOf("<img", StringComparison.OrdinalIgnoreCase) == -1);
@@ -191,28 +137,67 @@ namespace AntiXssUF.TestSite.Controllers
             testScriptAttacks();
             testImgAttacks();
             stopwatch.Stop();
-            stringBuilder.Append($"\n==============程序运行的时间：{stopwatch.Elapsed.TotalMilliseconds}毫秒");
-            ViewBag.Test = stringBuilder.ToString();
-            return View();
-        }
-        [HttpGet]
-        public IActionResult Test()
-        {
-            ViewBag.html ="";
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Test(TestModel model)
-        {
-            var clean = model?.RichText?.ToString() ?? string.Empty;
-            ViewBag.html = clean;
-            return View();
+            Console.WriteLine($"\n==============程序运行的时间：{stopwatch.Elapsed.TotalMilliseconds}毫秒");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [TestMethod]
+        public void ThreadTest()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            const int numThreads = 5;
+            const int numRuns = 1000;
+            var random = new Random(615322944);
+
+            for (int i = 0; i < numRuns; i++)
+            {
+                var allGo = new ManualResetEvent(false);
+                Exception firstException = null;
+                var failures = 0;
+            
+                var tests = new UnitTest1();
+                var waiting = numThreads;
+                var methods = typeof(UnitTest1).GetTypeInfo().GetMethods()
+                    .Where(m => m.GetCustomAttributes(typeof(TestMethodAttribute), false).Any())
+                    .Where(m => m.Name != "ThreadTest");
+                var threads = Shuffle(methods, random)
+                    .Take(numThreads)
+                    .Select(m => new Thread(() =>
+                    {
+                        try
+                        {
+                            if (Interlocked.Decrement(ref waiting) == 0) allGo.Set();
+                            m.Invoke(tests, null);
+                        }
+#pragma warning disable CA1031 // Do not catch general exception types
+                        catch (Exception ex)
+                        {
+                            Interlocked.CompareExchange(ref firstException, ex, null);
+                            Interlocked.Increment(ref failures);
+                        }
+#pragma warning restore CA1031 // Do not catch general exception types
+                    })).ToList();
+
+                foreach (var thread in threads)
+                    thread.Start();
+                foreach (var thread in threads)
+                    thread.Join();
+
+                Assert.IsNull(firstException);
+                Assert.AreEqual(0, failures);
+            }
+        }
+        public static IEnumerable<T> Shuffle<T>(IEnumerable<T> source, Random rng)
+        {
+            T[] elements = source.ToArray();
+            for (int i = elements.Length - 1; i >= 0; i--)
+            {
+                // Swap element "i" with a random earlier element it (or itself)
+                // ... except we don't really need to swap it fully, as we can
+                // return it immediately, and afterwards it's irrelevant.
+                int swapIndex = rng.Next(i + 1);
+                yield return elements[swapIndex];
+                elements[swapIndex] = elements[i];
+            }
         }
     }
+  
 }

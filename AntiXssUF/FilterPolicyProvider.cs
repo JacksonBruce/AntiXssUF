@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,27 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ufangx.Xss
 {
-    public class FilterPolicyProvider : IFilterPolicyProvider
+    /// <summary>
+    /// 策略管理提供者
+    /// </summary>
+    public partial class FilterPolicyProvider : IFilterPolicyProvider
     {
-        public FilterPolicyProvider(IOptions<FilterPolicyOptions> options)
-           : this(options, new Dictionary<string, FilterPolicyBuilder>(StringComparer.OrdinalIgnoreCase))
-        {
-        }
-
-        protected FilterPolicyProvider(IOptions<FilterPolicyOptions> options, IDictionary<string, FilterPolicyBuilder> schemes)
-        {
-            _options = options.Value;
-
-            _schemes = schemes ?? throw new ArgumentNullException(nameof(schemes));
-            _requestHandlers = new List<FilterPolicyBuilder>();
-
-            foreach (var builder in _options.Schemes)
-            {
-                ///var scheme = builder.Build();
-                AddScheme(builder);
-            }
-        }
-
 
         private readonly FilterPolicyOptions _options;
         private readonly IDictionary<string, FilterPolicyBuilder> _schemes;
@@ -35,7 +18,11 @@ namespace Ufangx.Xss
         private readonly object _lock = new object();
         private FilterPolicyBuilder[] _requestHandlersCopy;
         private FilterPolicyBuilder[] _schemesCopy;
-
+        /// <summary>
+        /// 尝试添加策略方案
+        /// </summary>
+        /// <param name="scheme"></param>
+        /// <returns></returns>
         public virtual bool TryAddScheme(FilterPolicyBuilder scheme)
         {
             if (_schemes.ContainsKey(scheme.Name))
@@ -58,6 +45,10 @@ namespace Ufangx.Xss
                 return true;
             }
         }
+        /// <summary>
+        /// 添加策略方案
+        /// </summary>
+        /// <param name="scheme"></param>
         public virtual void AddScheme(FilterPolicyBuilder scheme)
         {
             if (_schemes.ContainsKey(scheme.Name))
@@ -72,6 +63,10 @@ namespace Ufangx.Xss
                 }
             }
         }
+        /// <summary>
+        /// 移除策略方案
+        /// </summary>
+        /// <param name="name"></param>
         public virtual void RemoveScheme(string name)
         {
             if (!_schemes.ContainsKey(name))
@@ -92,12 +87,25 @@ namespace Ufangx.Xss
                 }
             }
         }
+        /// <summary>
+        /// 获取策略
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public virtual Task<FilterPolicyBuilder> GetSchemeAsync(string name)
         => Task.FromResult(_schemes.ContainsKey(name) ? _schemes[name] : null);
+        /// <summary>
+        /// 获取默认策略
+        /// </summary>
+        /// <returns></returns>
         public virtual Task<FilterPolicyBuilder> GetDefaultSchemeAsync()
          => _options.DefaultSchemeName != null
          ? GetSchemeAsync(_options.DefaultSchemeName)
          : Task.FromResult<FilterPolicyBuilder>(null);
+        /// <summary>
+        /// 返回所有策略方案
+        /// </summary>
+        /// <returns></returns>
         public virtual async Task<IEnumerable<FilterPolicyBuilder>> GetSchemesAsync()
          => await Task.FromResult(_requestHandlersCopy);
     }

@@ -6,6 +6,9 @@ using System.Web;
 
 namespace Ufangx.Xss
 {
+    /// <summary>
+    /// OwaspAntisamy配置策略
+    /// </summary>
     [Serializable]
     public class AntisamyPolicy: IFilterPolicy
     {
@@ -14,23 +17,43 @@ namespace Ufangx.Xss
         Dictionary<string, PolicyHtmlTag> tagRules;
         Dictionary<string, PolicyCssProperty> cssRules;
         private string name;
-
+        /// <summary>
+        /// 策略名称
+        /// </summary>
         public string Name => name;
-
+        /// <summary>
+        /// 公用正则表达式
+        /// </summary>
         public Dictionary<string, string> CommonRegularExpressions =>commonRegularExpressions;
-
+        /// <summary>
+        /// 控制设置
+        /// </summary>
         public Dictionary<string, string> Directives => directives;
-
+        /// <summary>
+        /// 公用属性
+        /// </summary>
         public Dictionary<string, PolicyHtmlAttribute> CommonAttributes => commonAttributes;
-
+        /// <summary>
+        /// 全局属性白名单
+        /// </summary>
         public Dictionary<string, PolicyHtmlAttribute> GlobalAttributes =>globalAttributes;
-
+        /// <summary>
+        /// html标签白名单
+        /// </summary>
         public Dictionary<string, PolicyHtmlTag> TagRules => tagRules;
-
+        /// <summary>
+        /// 样式表规则白名单
+        /// </summary>
         public Dictionary<string, PolicyCssProperty> CssRules =>cssRules;
-
+        /// <summary>
+        /// 是否已经初始化
+        /// </summary>
         public bool Initialized { get; private set; }
-
+        /// <summary>
+        /// 初始化策略
+        /// </summary>
+        /// <param name="config">XML配置文档</param>
+        /// <param name="name">策略名称</param>
         public void Init(string config,string name)
         {
             if (Initialized) return;
@@ -42,7 +65,6 @@ namespace Ufangx.Xss
             {
                 throw new ArgumentException("message", nameof(name));
             }    
-            this.name = name;
             XDocument doc;
             try
             {
@@ -51,10 +73,12 @@ namespace Ufangx.Xss
             catch (Exception x) { throw new FilterPolicyException("无效的XSSAttacks过滤策略。", x); }
             try
             {
-                Init(doc);
+                Init(doc);   
+                Initialized = true;
+                this.name = name;
             }
             catch (Exception x) { throw new FilterPolicyException("XSSAttacks策略文档不是一个有效的架构。", x); }
-            Initialized = true;
+         
         
         }
     

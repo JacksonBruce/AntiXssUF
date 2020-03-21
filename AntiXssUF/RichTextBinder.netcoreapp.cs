@@ -9,10 +9,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Ufangx.Xss
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RichTextBinder : IModelBinder
     {
      
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindingContext"></param>
+        /// <returns></returns>
         public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
             if (bindingContext == null)

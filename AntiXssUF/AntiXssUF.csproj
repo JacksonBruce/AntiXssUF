@@ -1,20 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>net461;netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>AntiXssUF</AssemblyName>
     <RootNamespace>Ufangx.Xss</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>xss anit policy filter</Description>
     <Authors>Jackson.bruce</Authors>
     <Company>ufangx</Company>
-    <Copyright>Copyright (c) 2020 Jackson.Bruce</Copyright>
+    <Copyright>Copyright (c) 2020-$([System.DateTime]::Now.Year) Jackson.Bruce</Copyright>
     <PackageProjectUrl>https://github.com/JacksonBruce/AntiXssUF</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JacksonBruce/AntiXssUF.git</RepositoryUrl>
     <PackageTags>Anti Xss .NETStandard</PackageTags>
     <PackageReleaseNotes>https://github.com/JacksonBruce/AntiXssUF/blob/master/README.md</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\AntiXssUF.xml</DocumentationFile>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Version>2.0.0</Version>
   </PropertyGroup>
+ 
 
   <ItemGroup>
     <None Remove="resources\DefaultPolicy.json" />
@@ -31,11 +35,172 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.13.0" />
     <PackageReference Include="AngleSharp.Css" Version="0.13.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.2" />
+ 
+    <Compile Include="AntisamyPolicy.cs" />
+    <Compile Include="AntiXssUFServiceCollectionExtensions.cs" />
+    <Compile Include="Configures.cs" />
+    <Compile Include="CssFilter.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FilterPolicyBuilder.cs" />
+    <Compile Include="FilterPolicyException.cs" />
+    <Compile Include="FilterPolicyFactory.cs" />
+    <Compile Include="FilterPolicyOptions.cs" />
+    <Compile Include="FilterPolicyProvider.cs" />
+    <Compile Include="FilterRegExp.cs" />
+    <Compile Include="HtmlFilter.cs" />
+    <Compile Include="ICssFilter.cs" />
+    <Compile Include="IFilterPolicy.cs" />
+    <Compile Include="IFilterPolicyFactory.cs" />
+    <Compile Include="IFilterPolicyProvider.cs" />
+    <Compile Include="IHtmlFilter.cs" />
+    <Compile Include="JsonFilterPolicy.cs" />
+    <Compile Include="PolicyAttribute.cs" />
+    <Compile Include="PolicyCssProperty.cs" />
+    <Compile Include="PolicyHtmlAttribute.cs" />
+    <Compile Include="PolicyHtmlAttributeOnInvalid.cs" />
+    <Compile Include="PolicyHtmlTag.cs" />
+    <Compile Include="PolicyHtmlTagAction.cs" />
+    <Compile Include="RichText.cs" />
+    <Compile Include="XssFilterBuilder.cs" />
+    
+    <Compile Include="XssShemeNameAttribute.netcoreapp.cs" />
+    <Compile Include="IXssSchemeName.netcoreapp.cs" />
+    <Compile Include="RichTextBinder.netcoreapp.cs" />
+    <Compile Include="RichTextBinderProvider.netcoreapp.cs" />
+    
+    <Compile Include="JsonFilterPolicy.netstandard.cs" />
+    <Compile Include="FilterPolicyProvider.netstandard.cs" />
+    <Compile Include="Configures.netstandard.cs" />
+    
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.2</Version>
+    </PackageReference>
+
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+     
+  </ItemGroup>
+
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.2</Version>
+    </PackageReference>
+
+    <Compile Remove="XssShemeNameAttribute.netcoreapp.cs" />
+    <Compile Remove="IXssSchemeName.netcoreapp.cs" />
+    <Compile Remove="RichTextBinder.netcoreapp.cs" />
+    <Compile Remove="RichTextBinderProvider.netcoreapp.cs" />
+    
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>3.1.2</Version>
+    </PackageReference>
+    <Compile Remove="XssShemeNameAttribute.netcoreapp.cs" />
+    <Compile Remove="IXssSchemeName.netcoreapp.cs" />
+    <Compile Remove="RichTextBinder.netcoreapp.cs" />
+    <Compile Remove="RichTextBinderProvider.netcoreapp.cs" />
+    
+  </ItemGroup>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    
+    <Compile Include="Configures.net461.cs" />
+    <Compile Include="JsonFilterPolicy.net461.cs" />
+    <Compile Include="FilterPolicyProvider.net461.cs" />
+    <Compile Include="XssSchemeNameAttribute.net461.cs" />
+    <Compile Include="IXssSchemeName.net461.cs" />
+    <Compile Include="RichTextBinder.net461.cs" />
+
+    <Compile Remove="XssShemeNameAttribute.netcoreapp.cs" />
+    <Compile Remove="IXssSchemeName.netcoreapp.cs" />
+    <Compile Remove="RichTextBinder.netcoreapp.cs" />
+    <Compile Remove="RichTextBinderProvider.netcoreapp.cs" />
+    
+    <Compile Remove="JsonFilterPolicy.netstandard.cs" />
+    <Compile Remove="FilterPolicyProvider.netstandard.cs" />
+    <Compile Remove="Configures.netstandard.cs" />
+
+  </ItemGroup>
+ 
+
 
 </Project>

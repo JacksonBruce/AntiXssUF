@@ -36,951 +36,809 @@
     "frequency": "([0-9]+(.[0-9]+)?)(hz|khz)",
     "length": "((-|\\+)?0|(-|\\+)?([0-9]+(.[0-9]+)?)(em|ex|px|in|cm|mm|pt|pc))",
     "percentage": "(-|\\+)?([0-9]+(.[0-9]+)?)%",
-    "csscolor": "(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)|(^#[0-9a-fA-F]{3,3}$)|(^#[0-9a-fA-F]{6,6}$)|rgba?\\(\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\s*,\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\s*,\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])(\\s*,\\s*[1])?\\s*\\)",
+    "csscolor": "(aqua|black|blue|fuchsia|gray|grey|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow)|(^#[0-9a-fA-F]{3,3}$)|(^#[0-9a-fA-F]{6,6}$)|rgba?\\\\(\\\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\\\s*,\\\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])\\\\s*,\\\\s*([1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])(\\\\s*,\\\\s*[1])?\\\\s*\\\\)",
     "absolute-size": "(xx-small|x-small|small|medium|large|x-large|xx-large)",
     "relative-size": "(larger|smaller)"
   },
   "CommonAttributes": [
     {
-     
-      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9_\\-\\:]+" } ],
       "Name": "id",
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9_\\-\\:]+" } ],
       "Description": "The 'id' of any HTML attribute should not contain anything besides letters and numbers"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "htmlClass" } ],
       "Name": "class",
+      "AllowedRegExp": [ { "Name": "htmlClass" } ],
       "Description": "The 'class' of any HTML attribute is usually a single word, but it can also be a list of class names separated by spaces"
     },
     {
-     
-      "AllowedRegExp": [ { "Value": "[a-zA-Z]{2,20}" } ],
       "Name": "lang",
+      "AllowedRegExp": [ { "Value": "[a-zA-Z]{2,20}" } ],
       "Description": "The 'lang' attribute tells the browser what language the element's attribute values and content are written in"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "htmlTitle" } ],
       "Name": "title",
+      "AllowedRegExp": [ { "Name": "htmlTitle" } ],
       "Description": "The 'title' attribute provides text that shows up in a 'tooltip' when a user hovers their mouse over the element"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "paragraph" } ],
       "Name": "alt",
+      "AllowedRegExp": [ { "Name": "paragraph" } ],
       "Description": "The 'alt' attribute provides alternative text to users when its visual representation is not available"
     },
     {
-     
       "Name": "style",
       "Description": "The 'style' attribute provides the ability for users to change many attributes of the tag's contents using a strict syntax"
     },
     {
-     
-      "AllowedValues": [ "screen", "tty", "tv", "projection", "handheld", "print", "braille", "aural", "all" ],
-      "Name": "media"
+      "Name": "media",
+      "AllowedValues": [ "screen", "tty", "tv", "projection", "handheld", "print", "braille", "aural", "all" ]
     },
     {
-     
+      "Name": "href",
       "AllowedRegExp": [
         { "Name": "onsiteURL" },
         { "Name": "offsiteURL" }
       ],
-      "AllowedValues": [ "javascript:history.go(0)", "javascript:history.go(-1)", "javascript:void(0)", "javascript:location.reload()" ],
-      "Name": "href"
+      "AllowedValues": [ "javascript:history.go(0)", "javascript:history.go(-1)", "javascript:void(0)", "javascript:location.reload()" ]
     },
     {
-     
-      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9-_\\$]+" } ],
-      "Name": "name"
+      "Name": "name",
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9-_\\$]+" } ]
     },
     {
-     
-      "AllowedValues": [ "default", "rect", "circle", "poly" ],
       "Name": "shape",
+      "AllowedValues": [ "default", "rect", "circle", "poly" ],
       "Description": "The 'shape' attribute defines the shape of the selectable area"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "border"
+      "Name": "border",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "cellpadding"
+      "Name": "cellpadding",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "cellspacing"
+      "Name": "cellspacing",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "colspan"
+      "Name": "colspan",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "rowspan"
+      "Name": "rowspan",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "onsiteURL" } ],
-      "Name": "background"
+      "Name": "background",
+      "AllowedRegExp": [ { "Name": "onsiteURL" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "colorNameOrCode" } ],
-      "Name": "bgcolor"
+      "Name": "bgcolor",
+      "AllowedRegExp": [ { "Name": "colorNameOrCode" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "paragraph" } ],
-      "Name": "abbrev"
+      "Name": "abbrev",
+      "AllowedRegExp": [ { "Name": "paragraph" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*]*" } ],
       "Name": "headers",
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*]*" } ],
       "Description": "The 'headers' attribute is a space-separated list of cell IDs"
     },
     {
-     
-      "AllowedRegExp": [ { "Value": "numberOrPercent" } ],
-      "Name": "charoff"
+      "Name": "charoff",
+      "AllowedRegExp": [ { "Value": "numberOrPercent" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Value": ".*{0,1}" } ],
-      "Name": "char"
+      "Name": "char",
+      "AllowedRegExp": [ { "Value": ".*{0,1}" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*,]*" } ],
       "Name": "axis",
+      "AllowedRegExp": [ { "Value": "[a-zA-Z0-9\\s*,]*" } ],
       "Description": "The 'headers' attribute is a comma-separated list of related header cells"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "anything" } ],
       "Name": "nowrap",
+      "AllowedRegExp": [ { "Name": "anything" } ],
       "Description": "The 'nowrap' attribute tells the browser not to wrap text that goes over one line"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "numberOrPercent" } ],
-      "Name": "width"
+      "Name": "width",
+      "AllowedRegExp": [ { "Name": "numberOrPercent" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "numberOrPercent" } ],
-      "Name": "height"
+      "Name": "height",
+      "AllowedRegExp": [ { "Name": "numberOrPercent" } ]
     },
     {
-     
-      "AllowedValues": [ "center", "middle", "left", "right", "justify", "char" ],
       "Name": "align",
+      "AllowedValues": [ "center", "middle", "left", "right", "justify", "char" ],
       "Description": "The 'align' attribute of an HTML element is a direction word, like 'left', 'right' or 'center'"
     },
     {
-     
-      "AllowedValues": [ "baseline", "bottom", "middle", "top" ],
       "Name": "valign",
+      "AllowedValues": [ "baseline", "bottom", "middle", "top" ],
       "Description": "The 'valign' attribute of an HTML attribute is a direction word, like 'baseline','bottom','middle' or 'top'"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onFocus",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onFocus' event is executed when the control associated with the tag gains focus"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onBlur",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onBlur' event is executed when the control associated with the tag loses focus"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onClick",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onClick' event is executed when the control associated with the tag is clicked"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onDblClick",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onDblClick' event is executed when the control associated with the tag is clicked twice immediately"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onMouseDown",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onMouseDown' event is executed when the control associated with the tag is clicked but not yet released"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onMouseUp",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onMouseUp' event is executed when the control associated with the tag is clicked after the button is released"
     },
     {
-     
-      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Name": "onMouseOver",
+      "AllowedValues": [ "javascript:void(0)", "javascript:history.go(-1)" ],
       "Description": "The 'onMouseOver' event is executed when the user's mouse hovers over the control associated with the tag"
     },
     {
-     
-      "AllowedValues": [ "row", "col", "rowgroup", "colgroup" ],
       "Name": "scope",
+      "AllowedValues": [ "row", "col", "rowgroup", "colgroup" ],
       "Description": "The 'scope' attribute defines what's covered by the header cells"
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "anything" } ],
-      "Name": "disabled"
+      "Name": "disabled",
+      "AllowedRegExp": [ { "Name": "anything" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "anything" } ],
-      "Name": "readonly"
+      "Name": "readonly",
+      "AllowedRegExp": [ { "Name": "anything" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "anything" } ],
-      "Name": "accesskey"
+      "Name": "accesskey",
+      "AllowedRegExp": [ { "Name": "anything" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "size"
+      "Name": "size",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedValues": [ "on", "off" ],
-      "Name": "autocomplete"
+      "Name": "autocomplete",
+      "AllowedValues": [ "on", "off" ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "rows"
+      "Name": "rows",
+      "AllowedRegExp": [ { "Name": "number" } ]
     },
     {
-     
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "Name": "cols"
+      "Name": "cols",
+      "AllowedRegExp": [ { "Name": "number" } ]
     }
   ],
   "CssRules": [
     {
+      "Name": "azimuth",
       "AllowedRegExp": [ { "Name": "angle" } ],
       "AllowedValues": [ "left-side", "far-left", "left", "center-left", "center", "center-right", "right", "far-right", "right-side", "behind", "leftwards", "rightwards", "inherit" ],
-      "Name": "azimuth",
       "Description": "This property is most likely to be implemented by mixing the same signal into different channels at differing volumes."
     },
     {
+      "Name": "background",
       "Shorthands": [ "background-color", "background-image", "background-repeat", "background-attachment", "background-position" ],
       "AllowedValues": [ "inherit" ],
-      "Name": "background",
       "Description": "The 'background' property is a shorthand property for setting the individual background properties (i.e., 'background-color', 'background-image', 'background-repeat', 'background-attachment' and 'background-position') at the same place in the style sheet."
     },
     {
-      "AllowedValues": [ "scroll", "fixed", "inherit" ],
       "Name": "background-attachment",
+      "AllowedValues": [ "scroll", "fixed", "inherit" ],
       "Description": "If a background image is specified, this property specifies whether it is fixed with regard to the viewport ('fixed') or scrolls along with the document ('scroll')."
     },
     {
+      "Name": "background-color",
       "AllowedRegExp": [ { "Name": "cssColor" } ],
       "AllowedValues": [ "transparent", "inherit" ],
-      "Name": "background-color",
       "Description": "This property sets the background color of an element, either a <color> value or the keyword 'transparent', to make the underlying colors shine through."
     },
     {
+      "Name": "background-image",
       "AllowedRegExp": [
         { "Name": "cssOffsiteUri" },
         { "Name": "cssOnsiteUri" }
       ],
       "AllowedValues": [ "none", "inherit" ],
-      "Name": "background-image",
       "Description": "This property sets the background image of an element."
     },
     {
+      "Name": "background-position",
       "AllowedRegExp": [
         { "Name": "percentage" },
         { "Name": "length" }
       ],
       "AllowedValues": [ "top", "center", "bottom", "left", "center", "right", "inherit" ],
-      "Name": "background-position",
       "Description": "If a background image has been specified, this property specifies its initial position."
     },
     {
-      "AllowedValues": [ "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" ],
       "Name": "background-repeat",
+      "AllowedValues": [ "repeat", "repeat-x", "repeat-y", "no-repeat", "inherit" ],
       "Description": "If a background image is specified, this property specifies whether the image is repeated (tiled), and how."
     },
     {
-      "AllowedValues": [ "collapse", "separate", "inherit" ],
       "Name": "border-collapse",
-      "Description": ""
+      "AllowedValues": [ "collapse", "separate", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "transparent", "inherit" ],
       "Name": "border-color",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "transparent", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "border-top-color",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "border-right-color",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "border-bottom-color",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-left-color",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
+      "Name": "border-left-color",
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "bottom",
       "AllowedRegExp": [
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "auto", "inherit" ],
-      "Name": "bottom",
-      "Description": ""
+      "AllowedValues": [ "auto", "inherit" ]
     },
     {
-      "AllowedValues": [ "top", "bottom", "left", "right", "inherit" ],
       "Name": "caption-side",
-      "Description": ""
+      "AllowedValues": [ "top", "bottom", "left", "right", "inherit" ]
     },
     {
-      "AllowedValues": [ "none", "left", "right", "both", "inherit" ],
       "Name": "clear",
-      "Description": ""
+      "AllowedValues": [ "none", "left", "right", "both", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "color",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedRegExp": [
-        { "Name": "cssOffsiteUri" },
-        { "Name": "cssOnsiteUri" }
-      ],
-      "AllowedValues": [ "none", "inherit" ],
       "Name": "cue-after",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [
         { "Name": "cssOffsiteUri" },
         { "Name": "cssOnsiteUri" }
       ],
-      "AllowedValues": [ "none", "inherit" ],
+      "AllowedValues": [ "none", "inherit" ]
+    },
+    {
       "Name": "cue-before",
-      "Description": ""
+      "AllowedRegExp": [
+        { "Name": "cssOffsiteUri" },
+        { "Name": "cssOnsiteUri" }
+      ],
+      "AllowedValues": [ "none", "inherit" ]
     },
     {
-      "AllowedValues": [ "ltr", "rtl", "inherit" ],
       "Name": "direction",
-      "Description": ""
+      "AllowedValues": [ "ltr", "rtl", "inherit" ]
     },
     {
-      "AllowedValues": [ "inline", "block", "list-item", "run-in", "compact", "marker", "table", "inline-table", "table-row-group", "table-header-group", "table-footer-group", "table-row", "table-column-group", "table-column", "table-cell", "table-caption", "none", "inherit" ],
       "Name": "display",
-      "Description": ""
+      "AllowedValues": [ "inline", "block", "list-item", "run-in", "compact", "marker", "table", "inline-table", "table-row-group", "table-header-group", "table-footer-group", "table-row", "table-column-group", "table-column", "table-cell", "table-caption", "none", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "angle" } ],
-      "AllowedValues": [ "below", "level", "above", "higher", "lower", "inherit" ],
       "Name": "elevation",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "angle" } ],
+      "AllowedValues": [ "below", "level", "above", "higher", "lower", "inherit" ]
     },
     {
-      "AllowedValues": [ "show", "hide", "inherit" ],
       "Name": "empty-cells",
-      "Description": ""
+      "AllowedValues": [ "show", "hide", "inherit" ]
     },
     {
-      "AllowedValues": [ "left", "right", "none", "inherit" ],
       "Name": "float",
-      "Description": ""
+      "AllowedValues": [ "left", "right", "none", "inherit" ]
     },
     {
+      "Name": "font-size",
       "AllowedRegExp": [
         { "Name": "absolute-size" },
         { "Name": "relative-size" },
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "font-size",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "AllowedValues": [ "none", "inherit" ],
       "Name": "font-size-adjust",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "none", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "wider", "narrower", "ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", "inherit" ],
       "Name": "font-stretch",
-      "Description": ""
+      "AllowedValues": [ "normal", "wider", "narrower", "ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "italic", "oblique", "inherit" ],
       "Name": "font-style",
-      "Description": ""
+      "AllowedValues": [ "normal", "italic", "oblique", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "small-caps", "inherit" ],
       "Name": "font-variant",
-      "Description": ""
+      "AllowedValues": [ "normal", "small-caps", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "bold", "bolder", "lighter", "100", "200", "300", "400", "500", "600", "700", "800", "900", "inherit" ],
       "Name": "font-weight",
-      "Description": ""
+      "AllowedValues": [ "normal", "bold", "bolder", "lighter", "100", "200", "300", "400", "500", "600", "700", "800", "900", "inherit" ]
     },
     {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "auto", "inherit" ],
       "Name": "height",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "auto", "inherit" ],
+      "AllowedValues": [ "auto", "inherit" ]
+    },
+    {
       "Name": "left",
-      "Description": ""
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "length" } ],
-      "AllowedValues": [ "normal", "inherit" ],
       "Name": "letter-spacing",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "normal", "inherit" ]
     },
     {
+      "Name": "line-height",
       "AllowedRegExp": [
         { "Name": "number" },
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "normal", "inherit" ],
-      "Name": "line-height",
-      "Description": ""
+      "AllowedValues": [ "normal", "inherit" ]
     },
     {
+      "Name": "list-style-image",
       "AllowedRegExp": [
         { "Name": "cssOffsiteUri" },
         { "Name": "cssOnsiteUri" }
       ],
-      "AllowedValues": [ "none", "inherit" ],
-      "Name": "list-style-image",
-      "Description": ""
+      "AllowedValues": [ "none", "inherit" ]
     },
     {
-      "AllowedValues": [ "inside", "outside", "inherit" ],
       "Name": "list-style-position",
-      "Description": ""
+      "AllowedValues": [ "inside", "outside", "inherit" ]
     },
     {
-      "AllowedValues": [ "disc", "circle", "square", "decimal", "decimal-leading-zero", "lower-roman", "upper-roman", "lower-greek", "lower-alpha", "lower-latin", "upper-alpha", "upper-latin", "hebrew", "armenian", "georgian", "cjk-ideographic", "hiragana", "katakana", "hiragana-iroha", "katakana-iroha", "none", "inherit" ],
       "Name": "list-style-type",
-      "Description": ""
+      "AllowedValues": [ "disc", "circle", "square", "decimal", "decimal-leading-zero", "lower-roman", "upper-roman", "lower-greek", "lower-alpha", "lower-latin", "upper-alpha", "upper-latin", "hebrew", "armenian", "georgian", "cjk-ideographic", "hiragana", "katakana", "hiragana-iroha", "katakana-iroha", "none", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "length" } ],
-      "AllowedValues": [ "auto", "inherit" ],
       "Name": "marker-offset",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "none", "inherit" ],
-      "Name": "max-height",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "none", "inherit" ],
-      "Name": "max-width",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "min-height",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "min-width",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "integer" } ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "orphans",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "invert", "inherit" ],
-      "Name": "outline-color",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "visible", "hidden", "scroll", "auto", "inherit" ],
-      "Name": "overflow",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ],
-      "Name": "page-break-after",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ],
-      "Name": "page-break-before",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "avoid", "auto", "inherit" ],
-      "Name": "page-break-inside",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "time" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "pause-after",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "time" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "pause-before",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "frequency" } ],
-      "AllowedValues": [ "x-low", "low", "medium", "high", "x-high", "inherit" ],
-      "Name": "pitch",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "pitch-range",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "static", "inherit" ],
-      "Name": "position",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "richness",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "auto", "inherit" ],
-      "Name": "right",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [ { "Name": "length" } ],
-      "AllowedValues": [ "auto", "portrait", "landscape", "inherit" ],
+      "AllowedValues": [ "auto", "inherit" ]
+    },
+    {
+      "Name": "max-height",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "none", "inherit" ]
+    },
+    {
+      "Name": "max-width",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "none", "inherit" ]
+    },
+    {
+      "Name": "min-height",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "min-width",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "orphans",
+      "AllowedRegExp": [ { "Name": "integer" } ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "outline-color",
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "invert", "inherit" ]
+    },
+    {
+      "Name": "overflow",
+      "AllowedValues": [ "visible", "hidden", "scroll", "auto", "inherit" ]
+    },
+    {
+      "Name": "page-break-after",
+      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ]
+    },
+    {
+      "Name": "page-break-before",
+      "AllowedValues": [ "auto", "always", "avoid", "left", "right", "inherit" ]
+    },
+    {
+      "Name": "page-break-inside",
+      "AllowedValues": [ "avoid", "auto", "inherit" ]
+    },
+    {
+      "Name": "pause-after",
+      "AllowedRegExp": [
+        { "Name": "time" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "pause-before",
+      "AllowedRegExp": [
+        { "Name": "time" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "pitch",
+      "AllowedRegExp": [ { "Name": "frequency" } ],
+      "AllowedValues": [ "x-low", "low", "medium", "high", "x-high", "inherit" ]
+    },
+    {
+      "Name": "pitch-range",
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "position",
+      "AllowedValues": [ "static", "inherit" ]
+    },
+    {
+      "Name": "richness",
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "right",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ]
+    },
+    {
       "Name": "size",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "auto", "portrait", "landscape", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "none", "spell-out", "inherit" ],
       "Name": "speak",
-      "Description": ""
+      "AllowedValues": [ "normal", "none", "spell-out", "inherit" ]
     },
     {
-      "AllowedValues": [ "once", "always", "inherit" ],
       "Name": "speak-header",
-      "Description": ""
+      "AllowedValues": [ "once", "always", "inherit" ]
     },
     {
-      "AllowedValues": [ "digits", "continuous", "inherit" ],
       "Name": "speak-numeral",
-      "Description": ""
+      "AllowedValues": [ "digits", "continuous", "inherit" ]
     },
     {
-      "AllowedValues": [ "code", "none", "inherit" ],
       "Name": "speak-punctuation",
-      "Description": ""
+      "AllowedValues": [ "code", "none", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "number" } ],
-      "AllowedValues": [ "x-slow", "slow", "medium", "fast", "x-fast", "faster", "slower", "inherit" ],
       "Name": "speech-rate",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [ { "Name": "number" } ],
-      "AllowedValues": [ "inherit" ],
+      "AllowedValues": [ "x-slow", "slow", "medium", "fast", "x-fast", "faster", "slower", "inherit" ]
+    },
+    {
       "Name": "stress",
-      "Description": ""
+      "AllowedRegExp": [ { "Name": "number" } ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedValues": [ "auto", "fixed", "inherit" ],
       "Name": "table-layout",
-      "Description": ""
+      "AllowedValues": [ "auto", "fixed", "inherit" ]
     },
     {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit" ],
       "Name": "text-indent",
-      "Description": ""
-    },
-    {
-      "AllowedValues": [ "capitalize", "uppercase", "lowercase", "none", "inherit" ],
-      "Name": "text-transform",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "auto", "inherit" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "text-transform",
+      "AllowedValues": [ "capitalize", "uppercase", "lowercase", "none", "inherit" ]
+    },
+    {
       "Name": "top",
-      "Description": ""
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "embed", "bidi-override", "inherit" ],
       "Name": "unicode-bidi",
-      "Description": ""
+      "AllowedValues": [ "normal", "embed", "bidi-override", "inherit" ]
     },
     {
+      "Name": "vertical-align",
       "AllowedRegExp": [
         { "Name": "percentage" },
         { "Name": "length" }
       ],
-      "AllowedValues": [ "baseline", "sub", "super", "top", "text-top", "middle", "bottom", "text-bottom", "inherit" ],
-      "Name": "vertical-align",
-      "Description": ""
+      "AllowedValues": [ "baseline", "sub", "super", "top", "text-top", "middle", "bottom", "text-bottom", "inherit" ]
     },
     {
-      "AllowedValues": [ "visible", "hidden", "collapse", "inherit" ],
       "Name": "visibility",
-      "Description": ""
+      "AllowedValues": [ "visible", "hidden", "collapse", "inherit" ]
     },
     {
+      "Name": "volume",
       "AllowedRegExp": [
         { "Name": "number" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "silent", "x-soft", "soft", "medium", "loud", "x-loud", "inherit" ],
-      "Name": "volume",
-      "Description": ""
+      "AllowedValues": [ "silent", "x-soft", "soft", "medium", "loud", "x-loud", "inherit" ]
     },
     {
-      "AllowedValues": [ "normal", "pre", "nowrap", "inherit" ],
       "Name": "white-space",
-      "Description": ""
+      "AllowedValues": [ "normal", "pre", "nowrap", "inherit" ]
     },
     {
-      "AllowedRegExp": [ { "Name": "integer" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "widows",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "auto", "inherit" ],
-      "Name": "width",
-      "Description": ""
-    },
-    {
-      "AllowedRegExp": [ { "Name": "length" } ],
-      "AllowedValues": [ "normal", "inherit" ],
-      "Name": "word-spacing",
-      "Description": ""
-    },
-    {
       "AllowedRegExp": [ { "Name": "integer" } ],
-      "AllowedValues": [ "auto", "inherit" ],
-      "Name": "z-index",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedValues": [ "inherit", "none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset" ],
-      "Name": "border-style",
-      "Description": ""
+      "Name": "width",
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "auto", "inherit" ]
     },
     {
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-top-style",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-style" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-right-style",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-style" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-bottom-style",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-style" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-left-style",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-width" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-top-width",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-width" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-right-width",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-width" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-bottom-width",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "border-width" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border-left-width",
-      "Description": ""
-    },
-    {
+      "Name": "word-spacing",
       "AllowedRegExp": [ { "Name": "length" } ],
-      "AllowedValues": [ "inherit", "thin", "medium", "thick" ],
-      "Name": "border-width",
-      "Description": ""
+      "AllowedValues": [ "normal", "inherit" ]
     },
     {
-      "AllowedRegExp": [
-        { "Name": "length" },
-        { "Name": "percentage" }
-      ],
-      "AllowedValues": [ "inherit", "auto" ],
-      "Name": "margin",
-      "Description": ""
+      "Name": "z-index",
+      "AllowedRegExp": [ { "Name": "integer" } ],
+      "AllowedValues": [ "auto", "inherit" ]
     },
     {
-      "Shorthands": [ "margin" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "margin-top",
-      "Description": ""
+      "Name": "border-style",
+      "AllowedValues": [ "inherit", "none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset" ]
     },
     {
-      "Shorthands": [ "margin" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "margin-right",
-      "Description": ""
+      "Name": "border-top-style",
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "margin" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "margin-bottom",
-      "Description": ""
-    },
-    {
-      "Shorthands": [ "margin" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "margin-left",
-      "Description": ""
-    },
-    {
+      "Name": "border-right-style",
       "Shorthands": [ "border-style" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "outline-style",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
+      "Name": "border-bottom-style",
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border-left-style",
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border-top-width",
       "Shorthands": [ "border-width" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "outline-width",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
+      "Name": "border-right-width",
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border-bottom-width",
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border-left-width",
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border-width",
+      "AllowedRegExp": [ { "Name": "length" } ],
+      "AllowedValues": [ "inherit", "thin", "medium", "thick" ]
+    },
+    {
+      "Name": "margin",
       "AllowedRegExp": [
         { "Name": "length" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "inherit" ],
+      "AllowedValues": [ "inherit", "auto" ]
+    },
+    {
+      "Name": "margin-top",
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "margin-right",
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "margin-bottom",
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "margin-left",
+      "Shorthands": [ "margin" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "outline-style",
+      "Shorthands": [ "border-style" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "outline-width",
+      "Shorthands": [ "border-width" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
       "Name": "padding",
-      "Description": ""
+      "AllowedRegExp": [
+        { "Name": "length" },
+        { "Name": "percentage" }
+      ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "padding" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "padding-top",
-      "Description": ""
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "padding" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "padding-right",
-      "Description": ""
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "padding" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "padding-bottom",
-      "Description": ""
-    },
-    {
       "Shorthands": [ "padding" ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "padding-left",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
+      "Name": "padding-left",
+      "Shorthands": [ "padding" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
+      "Name": "border",
       "Shorthands": [ "border-width", "border-style" ],
       "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "border",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "border-top-width", "border-style" ],
-      "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
       "Name": "border-top",
-      "Description": ""
-    },
-    {
       "Shorthands": [ "border-top-width", "border-style" ],
       "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
       "Name": "border-right",
-      "Description": ""
-    },
-    {
       "Shorthands": [ "border-top-width", "border-style" ],
       "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
       "Name": "border-bottom",
-      "Description": ""
-    },
-    {
       "Shorthands": [ "border-top-width", "border-style" ],
       "AllowedRegExp": [ { "Name": "cssColor" } ],
-      "AllowedValues": [ "inherit" ],
+      "AllowedValues": [ "inherit" ]
+    },
+    {
       "Name": "border-left",
-      "Description": ""
+      "Shorthands": [ "border-top-width", "border-style" ],
+      "AllowedRegExp": [ { "Name": "cssColor" } ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "cue-before", "cue-after" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "cue",
-      "Description": ""
+      "Shorthands": [ "cue-before", "cue-after" ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "Shorthands": [ "list-style-type", "list-style-position", "list-style-image" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "list-style",
-      "Description": ""
+      "Shorthands": [ "list-style-type", "list-style-position", "list-style-image" ],
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedValues": [ "crop", "cross", "none", "inherit" ],
       "Name": "marks",
-      "Description": ""
+      "AllowedValues": [ "crop", "cross", "none", "inherit" ]
     },
     {
-      "Shorthands": [ "outline-color", "outline-style", "outline-width" ],
-      "AllowedValues": [ "inherit" ],
       "Name": "outline",
-      "Description": ""
+      "Shorthands": [ "outline-color", "outline-style", "outline-width" ],
+      "AllowedValues": [ "inherit" ]
     },
     {
+      "Name": "pause",
       "AllowedRegExp": [
         { "Name": "time" },
         { "Name": "percentage" }
       ],
-      "AllowedValues": [ "inherit" ],
-      "Name": "pause",
-      "Description": ""
+      "AllowedValues": [ "inherit" ]
     },
     {
-      "AllowedValues": [ "none", "underline", "overline", "line-through", "blink", "inherit" ],
       "Name": "text-decoration",
-      "Description": ""
+      "AllowedValues": [ "none", "underline", "overline", "line-through", "blink", "inherit" ]
     },
     {
+      "Name": "border-spacing",
       "AllowedRegExp": [ { "Name": "length" } ],
       "AllowedValues": [ "inherit" ],
-      "Name": "border-spacing",
       "Description": "The lengths specify the distance that separates adjacent cell borders. If one length is specified, it gives both the horizontal and vertical spacing. If two are specified, the first gives the horizontal spacing and the second the vertical spacing. Lengths may not be negative."
     },
     {
+      "Name": "counter-increment",
       "AllowedRegExp": [
         { "Name": "cssElementSelector" },
         { "Name": "cssClassSelector" },
@@ -989,46 +847,46 @@
         { "Name": "integer" }
       ],
       "AllowedValues": [ "none", "inherit" ],
-      "Name": "counter-increment",
       "Description": "The 'counter-increment' property accepts one or more names of counters (identifiers), each one optionally followed by an integer."
     },
     {
+      "Name": "clip",
       "AllowedRegExp": [ { "Name": "length" } ],
       "AllowedValues": [ "auto", "inherit" ],
-      "Name": "clip",
       "Description": "The 'clip' property applies to elements that have a 'overflow' property with a value other than 'visible'."
     },
     {
+      "Name": "cursor",
       "AllowedRegExp": [
         { "Name": "cssOffsiteUri" },
         { "Name": "cssOnsiteUri" }
       ],
       "AllowedValues": [ "auto", "inherit", "crosshair", "default", "pointer", "move", "e-resize", "ne-resize", "nw-resize", "n-resize", "se-resize", "sw-resize", "s-resize", "w-resize| text", "wait", "help" ],
-      "Name": "cursor",
       "Description": "This property specifies the type of cursor to be displayed for the pointing device."
     },
     {
+      "Name": "text-shadow",
       "AllowedRegExp": [
         { "Name": "cssColor" },
         { "Name": "length" }
       ],
       "AllowedValues": [ "none", "inherit" ],
-      "Name": "text-shadow",
       "Description": "This property accepts a comma-separated list of shadow effects to be applied to the text of the element."
     },
     {
+      "Name": "font",
       "Shorthands": [ "font-style", "font-variant", "font-weight", "font-size", "line-height", "font-family" ],
       "AllowedValues": [ "/", "caption", "icon", "menu", "message-box", "small-caption", "status-bar", "inherit" ],
-      "Name": "font",
       "Description": "The 'font' property is, except as described below, a shorthand property for setting 'font-style', 'font-variant', 'font-weight', 'font-size', 'line-height', and 'font-family', at the same place in the style sheet."
     },
     {
+      "Name": "font-family",
       "AllowedRegExp": [ { "Value": "[\\w,\\-'\" ]+" } ],
       "AllowedValues": [ "serif", "arial", "lucida console", "sans-serif", "cursive", "verdana", "fantasy", "monospace" ],
-      "Name": "font-family",
       "Description": "This property specifies a prioritized list of font family names and/or generic family names."
     },
     {
+      "Name": "page",
       "AllowedRegExp": [
         { "Name": "cssElementSelector" },
         { "Name": "cssClassSelector" },
@@ -1036,979 +894,563 @@
         { "Name": "cssAttributeSelector" }
       ],
       "AllowedValues": [ "auto" ],
-      "Name": "page",
       "Description": "The 'page' property can be used to specify a particular type of page where an element should be displayed."
     },
     {
+      "Name": "play-during",
       "AllowedRegExp": [
         { "Name": "cssOffsiteUri" },
         { "Name": "cssOnsiteUri" }
       ],
       "AllowedValues": [ "mix", "repeat", "none", "auto", "inherit" ],
-      "Name": "play-during",
       "Description": "Similar to the 'cue-before' and 'cue-after' properties, this property specifies a sound to be played as a background while an element's content is spoken."
     },
     {
-      "AllowedValues": [ "left", "right", "center", "justify", "inherit" ],
       "Name": "text-align",
+      "AllowedValues": [ "left", "right", "center", "justify", "inherit" ],
       "Description": "This property describes how inline content of a block is aligned."
     },
     {
-      "AllowedValues": [ "male", "female", "child", "inherit" ],
       "Name": "voice-family",
+      "AllowedValues": [ "male", "female", "child", "inherit" ],
       "Description": "The value is a comma-separated, prioritized list of voice family names (compare with 'font-family')."
     }
   ],
   "GlobalAttributes": [
-    {
-     
-      "Name": "id"
-    },
-    {
-     
-      "Name": "style"
-    },
-    {
-     
-      "Name": "title"
-    },
-    {
-     
-      "Name": "class"
-    },
-    {
-     
-      "Name": "lang"
-    }
+    { "Name": "id" },
+    { "Name": "style" },
+    { "Name": "title" },
+    { "Name": "class" },
+    { "Name": "lang" }
   ],
   "TagRules": [
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "html"
     },
     {
-      "AllowedAttributes": {
-        "bgcolor": {
-         
-          "Name": "bgcolor"
-        }
-      },
-      "Action": 2,
-      "Name": "body"
+      "Action": "Validate",
+      "Name": "body",
+      "AllowedAttributes": [ { "Name": "bgcolor" } ]
     },
     {
-      
-      "Action": 3,
+      "Action": "Filter",
       "Name": "meta"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "head"
     },
     {
-      
-      "Action": 1,
+      "Action": "Truncate",
       "Name": "title"
     },
+    { "Name": "script" },
     {
-      
-      "Action": 0,
-      "Name": "script"
-    },
-    {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "noscript"
     },
+    { "Name": "iframe" },
+    { "Name": "frameset" },
+    { "Name": "frame" },
     {
-      
-      "Action": 0,
-      "Name": "iframe"
-    },
-    {
-      
-      "Action": 0,
-      "Name": "frameset"
-    },
-    {
-      
-      "Action": 0,
-      "Name": "frame"
-    },
-    {
-      "AllowedAttributes": {
-        "for": {
-         
-          "AllowedRegExp": [ { "Name": "htmlId" } ],
-          "Name": "for"
+      "Action": "Validate",
+      "Name": "label",
+      "AllowedAttributes": [
+        {
+          "Name": "for",
+          "AllowedRegExp": [ { "Name": "htmlId" } ]
         }
-      },
-      "Action": 0,
-      "Name": "label"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "action": {
-         
+      "Action": "Validate",
+      "Name": "form",
+      "AllowedAttributes": [
+        {
+          "Name": "action",
           "AllowedRegExp": [
             { "Name": "onsiteURL" },
             { "Name": "offsiteURL" }
-          ],
-          "Name": "action"
+          ]
         },
-        "name": {
-         
-          "Name": "name"
-        },
-        "autocomplete": {
-         
-          "Name": "autocomplete"
-        },
-        "method": {
-         
-          "AllowedValues": [ "post", "get" ],
-          "Name": "method"
+        { "Name": "name" },
+        { "Name": "autocomplete" },
+        {
+          "Name": "method",
+          "AllowedValues": [ "post", "get" ]
         }
-      },
-      "Action": 2,
-      "Name": "form"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "name": {
-         
-          "Name": "name"
+      "Action": "Validate",
+      "Name": "button",
+      "AllowedAttributes": [
+        { "Name": "name" },
+        {
+          "Name": "value",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "value": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "value"
-        },
-        "disabled": {
-         
-          "Name": "disabled"
-        },
-        "accesskey": {
-         
-          "Name": "accesskey"
-        },
-        "type": {
-         
-          "AllowedValues": [ "submit", "reset", "button" ],
-          "Name": "type"
+        { "Name": "disabled" },
+        { "Name": "accesskey" },
+        {
+          "Name": "type",
+          "AllowedValues": [ "submit", "reset", "button" ]
         }
-      },
-      "Action": 2,
-      "Name": "button"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "name": {
-         
-          "Name": "name"
+      "Action": "Validate",
+      "Name": "input",
+      "AllowedAttributes": [
+        { "Name": "name" },
+        { "Name": "size" },
+        {
+          "Name": "maxlength",
+          "AllowedRegExp": [ { "Name": "number" } ]
         },
-        "size": {
-         
-          "Name": "size"
+        { "Name": "autocomplete" },
+        {
+          "Name": "checked",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "maxlength": {
-         
-          "AllowedRegExp": [ { "Name": "number" } ],
-          "Name": "maxlength"
-        },
-        "autocomplete": {
-         
-          "Name": "autocomplete"
-        },
-        "checked": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "checked"
-        },
-        "alt": {
-         
-          "Name": "alt"
-        },
-        "src": {
-         
+        { "Name": "alt" },
+        {
+          "Name": "src",
           "AllowedRegExp": [
             { "Name": "onsiteURL" },
             { "Name": "offsiteURL" }
-          ],
-          "Name": "src"
+          ]
         },
-        "usemap": {
-         
-          "AllowedRegExp": [ { "Name": "onsiteURL" } ],
-          "Name": "usemap"
+        {
+          "Name": "usemap",
+          "AllowedRegExp": [ { "Name": "onsiteURL" } ]
         },
-        "type": {
-         
-          "AllowedValues": [ "hidden", "text", "password", "radio", "checkbox", "submit", "button", "image", "file", "reset" ],
-          "Name": "type"
+        {
+          "Name": "type",
+          "AllowedValues": [ "hidden", "text", "password", "radio", "checkbox", "submit", "button", "image", "file", "reset" ]
         },
-        "value": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "value"
+        {
+          "Name": "value",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "disabled": {
-         
-          "Name": "disabled"
-        },
-        "readonly": {
-         
-          "Name": "readonly"
-        },
-        "accesskey": {
-         
-          "Name": "accesskey"
-        },
-        "border": {
-         
-          "Name": "border"
-        }
-      },
-      "Action": 2,
-      "Name": "input"
+        { "Name": "disabled" },
+        { "Name": "readonly" },
+        { "Name": "accesskey" },
+        { "Name": "border" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "name": {
-         
-          "Name": "name"
+      "Action": "Validate",
+      "Name": "select",
+      "AllowedAttributes": [
+        { "Name": "name" },
+        { "Name": "disabled" },
+        {
+          "Name": "multiple",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "disabled": {
-         
-          "Name": "disabled"
-        },
-        "multiple": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "multiple"
-        },
-        "size": {
-         
-          "Name": "size"
-        }
-      },
-      "Action": 2,
-      "Name": "select"
+        { "Name": "size" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "disabled": {
-         
-          "Name": "disabled"
+      "Action": "Validate",
+      "Name": "option",
+      "AllowedAttributes": [
+        { "Name": "disabled" },
+        {
+          "Name": "value",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "value": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "value"
+        {
+          "Name": "label",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "label": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "label"
-        },
-        "selected": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "selected"
+        {
+          "Name": "selected",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         }
-      },
-      "Action": 2,
-      "Name": "option"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "rows": {
-         
-          "Name": "rows"
-        },
-        "cols": {
-         
-          "Name": "cols"
-        },
-        "name": {
-         
-          "Name": "name"
-        },
-        "disabled": {
-         
-          "Name": "disabled"
-        },
-        "readonly": {
-         
-          "Name": "readonly"
-        },
-        "accesskey": {
-         
-          "Name": "accesskey"
-        }
-      },
-      "Action": 2,
-      "Name": "textarea"
+      "Action": "Validate",
+      "Name": "textarea",
+      "AllowedAttributes": [
+        { "Name": "rows" },
+        { "Name": "cols" },
+        { "Name": "name" },
+        { "Name": "disabled" },
+        { "Name": "readonly" },
+        { "Name": "accesskey" }
+      ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h1"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h2"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h3"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h4"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h5"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "h6"
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
-        }
-      },
-      "Action": 2,
-      "Name": "p"
+      "Action": "Validate",
+      "Name": "p",
+      "AllowedAttributes": [ { "Name": "align" } ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "i"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "b"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "u"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "strong"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "em"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "small"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "big"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "pre"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "code"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "cite"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "samp"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "sub"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "sup"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "strike"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "center"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "blockquote"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "hr"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "br"
     },
     {
-      "AllowedAttributes": {
-        "color": {
-         
-          "AllowedRegExp": [ { "Name": "colorNameOrCode" } ],
-          "Name": "color"
+      "Action": "Validate",
+      "Name": "font",
+      "AllowedAttributes": [
+        {
+          "Name": "color",
+          "AllowedRegExp": [ { "Name": "colorNameOrCode" } ]
         },
-        "face": {
-         
-          "AllowedRegExp": [ { "Value": "[\\w;, ]+" } ],
-          "Name": "face"
+        {
+          "Name": "face",
+          "AllowedRegExp": [ { "Value": "[\\w;, ]+" } ]
         },
-        "size": {
-         
-          "AllowedRegExp": [ { "Value": "(\\+|-){0,1}(\\d)+" } ],
-          "Name": "size"
+        {
+          "Name": "size",
+          "AllowedRegExp": [ { "Value": "(\\+|-){0,1}(\\d)+" } ]
         }
-      },
-      "Action": 2,
-      "Name": "font"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "href": {
-         
-          "Name": "href"
+      "Action": "Validate",
+      "Name": "a",
+      "AllowedAttributes": [
+        { "Name": "href" },
+        { "Name": "onFocus" },
+        { "Name": "onBlur" },
+        {
+          "Name": "nohref",
+          "AllowedRegExp": [ { "Name": "anything" } ]
         },
-        "onfocus": {
-         
-          "Name": "onFocus"
+        {
+          "Name": "rel",
+          "AllowedValues": [ "nofollow" ]
         },
-        "onblur": {
-         
-          "Name": "onBlur"
-        },
-        "nohref": {
-         
-          "AllowedRegExp": [ { "Name": "anything" } ],
-          "Name": "nohref"
-        },
-        "rel": {
-         
-          "AllowedValues": [ "nofollow" ],
-          "Name": "rel"
-        },
-        "name": {
-         
-          "Name": "name"
-        }
-      },
-      "Action": 2,
-      "Name": "a"
+        { "Name": "name" }
+      ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "map"
     },
     {
-      "AllowedAttributes": {
-        "type": {
-         
-          "AllowedValues": [ "text/css" ],
-          "Name": "type"
+      "Action": "Validate",
+      "Name": "style",
+      "AllowedAttributes": [
+        {
+          "Name": "type",
+          "AllowedValues": [ "text/css" ]
         },
-        "media": {
-         
-          "Name": "media"
-        }
-      },
-      "Action": 2,
-      "Name": "style"
+        { "Name": "media" }
+      ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "span"
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
-        }
-      },
-      "Action": 2,
-      "Name": "div"
+      "Action": "Validate",
+      "Name": "div",
+      "AllowedAttributes": [ { "Name": "align" } ]
     },
     {
-      "AllowedAttributes": {
-        "src": {
-          "OnInvalid": 2,
+      "Action": "Validate",
+      "Name": "img",
+      "AllowedAttributes": [
+        {
+          "Name": "src",
+          "OnInvalid": "RemoveTag",
           "AllowedRegExp": [
             { "Name": "onsiteURL" },
             { "Name": "offsiteURL" }
-          ],
-          "Name": "src"
+          ]
         },
-        "name": {
-         
-          "Name": "name"
+        { "Name": "name" },
+        { "Name": "alt" },
+        { "Name": "height" },
+        { "Name": "width" },
+        { "Name": "border" },
+        { "Name": "align" },
+        {
+          "Name": "hspace",
+          "AllowedRegExp": [ { "Name": "number" } ]
         },
-        "alt": {
-         
-          "Name": "alt"
-        },
-        "height": {
-         
-          "Name": "height"
-        },
-        "width": {
-         
-          "Name": "width"
-        },
-        "border": {
-         
-          "Name": "border"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "hspace": {
-         
-          "AllowedRegExp": [ { "Name": "number" } ],
-          "Name": "hspace"
-        },
-        "vspace": {
-         
-          "AllowedRegExp": [ { "Name": "number" } ],
-          "Name": "vspace"
+        {
+          "Name": "vspace",
+          "AllowedRegExp": [ { "Name": "number" } ]
         }
-      },
-      "Action": 2,
-      "Name": "img"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "media": {
-         
-          "Name": "media"
+      "Action": "Validate",
+      "Name": "link",
+      "AllowedAttributes": [
+        { "Name": "media" },
+        {
+          "Name": "type",
+          "OnInvalid": "RemoveTag",
+          "AllowedValues": [ "text/css", "application/rss+xml", "image/x-icon" ]
         },
-        "type": {
-          "OnInvalid": 2,
-          "AllowedValues": [ "text/css", "application/rss+xml", "image/x-icon" ],
-          "Name": "type"
-        },
-        "rel": {
-         
-          "AllowedValues": [ "stylesheet", "shortcut icon", "search", "copyright", "top", "alternate" ],
-          "Name": "rel"
+        {
+          "Name": "rel",
+          "AllowedValues": [ "stylesheet", "shortcut icon", "search", "copyright", "top", "alternate" ]
         }
-      },
-      "Action": 2,
-      "Name": "link"
+      ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "ul"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "ol"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "li"
     },
     {
-      
-      "Action": 1,
+      "Action": "Truncate",
       "Name": "dd"
     },
     {
-      
-      "Action": 1,
+      "Action": "Truncate",
       "Name": "dl"
     },
     {
-      
-      "Action": 1,
+      "Action": "Truncate",
       "Name": "dt"
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        }
-      },
-      "Action": 2,
-      "Name": "thead"
+      "Action": "Validate",
+      "Name": "thead",
+      "AllowedAttributes": [
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        }
-      },
-      "Action": 2,
-      "Name": "tbody"
+      "Action": "Validate",
+      "Name": "tbody",
+      "AllowedAttributes": [
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        }
-      },
-      "Action": 2,
-      "Name": "tfoot"
+      "Action": "Validate",
+      "Name": "tfoot",
+      "AllowedAttributes": [
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "height": {
-         
-          "Name": "height"
-        },
-        "width": {
-         
-          "Name": "width"
-        },
-        "border": {
-         
-          "Name": "border"
-        },
-        "bgcolor": {
-         
-          "Name": "bgcolor"
-        },
-        "cellpadding": {
-         
-          "Name": "cellpadding"
-        },
-        "cellspacing": {
-         
-          "Name": "cellspacing"
-        },
-        "background": {
-         
-          "Name": "background"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "noresize": {
-         
-          "AllowedValues": [ "noresize" ],
-          "Name": "noresize"
+      "Action": "Validate",
+      "Name": "table",
+      "AllowedAttributes": [
+        { "Name": "height" },
+        { "Name": "width" },
+        { "Name": "border" },
+        { "Name": "bgcolor" },
+        { "Name": "cellpadding" },
+        { "Name": "cellspacing" },
+        { "Name": "background" },
+        { "Name": "align" },
+        {
+          "Name": "noresize",
+          "AllowedValues": [ "noresize" ]
         }
-      },
-      "Action": 2,
-      "Name": "table"
+      ]
     },
     {
-      "AllowedAttributes": {
-        "background": {
-         
-          "Name": "background"
-        },
-        "bgcolor": {
-         
-          "Name": "bgcolor"
-        },
-        "abbrev": {
-         
-          "Name": "abbrev"
-        },
-        "axis": {
-         
-          "Name": "axis"
-        },
-        "headers": {
-         
-          "Name": "headers"
-        },
-        "scope": {
-         
-          "Name": "scope"
-        },
-        "nowrap": {
-         
-          "Name": "nowrap"
-        },
-        "height": {
-         
-          "Name": "height"
-        },
-        "width": {
-         
-          "Name": "width"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        },
-        "colspan": {
-         
-          "Name": "colspan"
-        },
-        "rowspan": {
-         
-          "Name": "rowspan"
-        }
-      },
-      "Action": 2,
-      "Name": "td"
+      "Action": "Validate",
+      "Name": "td",
+      "AllowedAttributes": [
+        { "Name": "background" },
+        { "Name": "bgcolor" },
+        { "Name": "abbrev" },
+        { "Name": "axis" },
+        { "Name": "headers" },
+        { "Name": "scope" },
+        { "Name": "nowrap" },
+        { "Name": "height" },
+        { "Name": "width" },
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" },
+        { "Name": "colspan" },
+        { "Name": "rowspan" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "abbrev": {
-         
-          "Name": "abbrev"
-        },
-        "axis": {
-         
-          "Name": "axis"
-        },
-        "headers": {
-         
-          "Name": "headers"
-        },
-        "scope": {
-         
-          "Name": "scope"
-        },
-        "nowrap": {
-         
-          "Name": "nowrap"
-        },
-        "bgcolor": {
-         
-          "Name": "bgcolor"
-        },
-        "height": {
-         
-          "Name": "height"
-        },
-        "width": {
-         
-          "Name": "width"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        },
-        "colspan": {
-         
-          "Name": "colspan"
-        },
-        "rowspan": {
-         
-          "Name": "rowspan"
-        }
-      },
-      "Action": 2,
-      "Name": "th"
+      "Action": "Validate",
+      "Name": "th",
+      "AllowedAttributes": [
+        { "Name": "abbrev" },
+        { "Name": "axis" },
+        { "Name": "headers" },
+        { "Name": "scope" },
+        { "Name": "nowrap" },
+        { "Name": "bgcolor" },
+        { "Name": "height" },
+        { "Name": "width" },
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" },
+        { "Name": "colspan" },
+        { "Name": "rowspan" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "height": {
-         
-          "Name": "height"
-        },
-        "width": {
-         
-          "Name": "width"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "background": {
-         
-          "Name": "background"
-        }
-      },
-      "Action": 2,
-      "Name": "tr"
+      "Action": "Validate",
+      "Name": "tr",
+      "AllowedAttributes": [
+        { "Name": "height" },
+        { "Name": "width" },
+        { "Name": "align" },
+        { "Name": "valign" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "background" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "span": {
-         
-          "AllowedRegExp": [ { "Name": "number" } ],
-          "Name": "span"
+      "Action": "Validate",
+      "Name": "colgroup",
+      "AllowedAttributes": [
+        {
+          "Name": "span",
+          "AllowedRegExp": [ { "Name": "number" } ]
         },
-        "width": {
-         
-          "Name": "width"
-        },
-        "align": {
-         
-          "Name": "align"
-        },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        }
-      },
-      "Action": 2,
-      "Name": "colgroup"
+        { "Name": "width" },
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" }
+      ]
     },
     {
-      "AllowedAttributes": {
-        "align": {
-         
-          "Name": "align"
+      "Action": "Validate",
+      "Name": "col",
+      "AllowedAttributes": [
+        { "Name": "align" },
+        { "Name": "char" },
+        { "Name": "charoff" },
+        { "Name": "valign" },
+        {
+          "Name": "span",
+          "AllowedRegExp": [ { "Name": "number" } ]
         },
-        "char": {
-         
-          "Name": "char"
-        },
-        "charoff": {
-         
-          "Name": "charoff"
-        },
-        "valign": {
-         
-          "Name": "valign"
-        },
-        "span": {
-         
-          "AllowedRegExp": [ { "Name": "number" } ],
-          "Name": "span"
-        },
-        "width": {
-         
-          "Name": "width"
-        }
-      },
-      "Action": 2,
-      "Name": "col"
+        { "Name": "width" }
+      ]
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "fieldset"
     },
     {
-      
-      "Action": 2,
+      "Action": "Validate",
       "Name": "legend"
     }
   ]

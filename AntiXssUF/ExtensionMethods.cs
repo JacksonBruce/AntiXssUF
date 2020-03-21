@@ -7,11 +7,15 @@ using System.Linq;
 
 namespace Ufangx.Xss
 {
+    /// <summary>
+    /// 过滤策略扩展方法
+    /// </summary>
     public static class ExtensionMethods
     {
         /// <summary>
         /// 验证属性的值是否有效
         /// </summary>
+        /// <param name="policy"></param>
         /// <param name="attr"></param>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -34,7 +38,7 @@ namespace Ufangx.Xss
 
             if (attr.AllowedRegExp != null)
             {
-                ///验证是否符合指定的正则表达式
+                //验证是否符合指定的正则表达式
                 foreach (var regx in attr.AllowedRegExp)
                 {
                     if (string.IsNullOrWhiteSpace(regx.Name) && string.IsNullOrWhiteSpace(regx.Value)) continue;
@@ -59,30 +63,74 @@ namespace Ufangx.Xss
         static T Get<T>(IDictionary<string, T> collection, string key)where T:class {
             return key == null || collection == null || !collection.ContainsKey(key = key.ToLower()) ? null : collection[key];
         }
+        /// <summary>
+        /// 获取标签策略
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="tagName"></param>
+        /// <returns></returns>
         public static PolicyHtmlTag Tag(this IFilterPolicy policy, string tagName)
         {
             return Get(policy?.TagRules, tagName);
         }
+        /// <summary>
+        /// 获取样式属性过滤策略
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static PolicyCssProperty CssProperty(this IFilterPolicy policy, string name)
         {
             return Get(policy?.CssRules, name);
         }
+        /// <summary>
+        /// 获取通用属性过滤策略
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static PolicyHtmlAttribute CommonHtmlAttribute(this IFilterPolicy policy, string name)
         {
             return Get(policy?.CommonAttributes, name);
         }
+        /// <summary>
+        /// 获取全局属性过滤策略
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static PolicyHtmlAttribute GlobalHtmlAttribute(this IFilterPolicy policy, string name)
         {
             return Get(policy?.GlobalAttributes, name); 
         }
+        /// <summary>
+        /// 获取通用正则表达式
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static string RegularExpression(this IFilterPolicy policy, string name)
         {
             return Get(policy?.CommonRegularExpressions, name);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static string Directive(this IFilterPolicy policy, string name)
         {
             return Get(policy?.Directives, name);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <param name="default"></param>
+        /// <returns></returns>
         public static T Directive<T>(this IFilterPolicy policy, string name,T @default=default(T)) where T : struct
         {
             string v = Directive(policy,name);
@@ -109,6 +157,13 @@ namespace Ufangx.Xss
             }
             return @default;
         }
+        /// <summary>
+        /// 获取属性过滤策略
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="name"></param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public static PolicyHtmlAttribute AllowedAttribute(this IFilterPolicy policy,string name, PolicyHtmlTag tag)
         {
             var tagAttr = tag.AllowedAttributes.ContainsKey(name) ? tag.AllowedAttributes[name] : null;

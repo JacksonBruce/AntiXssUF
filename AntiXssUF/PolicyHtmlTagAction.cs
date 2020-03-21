@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ufangx.Xss
 {
+    /// <summary>
+    /// 过滤标签的动作
+    /// </summary>
     public enum PolicyHtmlTagAction
     {
         /// <summary>

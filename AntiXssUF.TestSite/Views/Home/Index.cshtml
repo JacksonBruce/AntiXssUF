@@ -2,30 +2,4 @@
     ViewData["Title"] = "测试";
 }
 
-    <div>
-        <style>
-            .output {
-                position: absolute;
-                top: 50px;
-                left: 0;
-                right: 0;
-                overflow: hidden;
-                bottom: 0;
-                background-color: white;
-                z-index:1;
-            }
-
-            .txt {
-                height: 100%;
-                width: 100%;
-                margin: 0;
-                display: block;
-                border: none;
-            }
-        </style>
-        <div class="output">
-            <textarea class="txt">
-       @Html.Raw(ViewBag.html)
-    </textarea>
-        </div>
-    </div>
+ @Html.Raw(Html.Encode(ViewBag.Test).Replace("&#xA;", "<br />"))

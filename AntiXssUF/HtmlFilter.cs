@@ -11,21 +11,39 @@ using System.Xml;
 using Microsoft.Extensions.DependencyInjection;
 namespace Ufangx.Xss
 {
+    /// <summary>
+    /// html过滤器
+    /// </summary>
     public class HtmlFilter : IHtmlFilter
     {
         #region 构造
+        /// <summary>
+        /// 创建html过滤器
+        /// </summary>
+        /// <param name="policy"></param>
+        /// <param name="cssFilter"></param>
         public HtmlFilter(IFilterPolicy policy, ICssFilter cssFilter)
         {
             Policy = policy ?? throw new ArgumentNullException(nameof(policy));
             _cssFilter = cssFilter;
         }
+        /// <summary>
+        /// 创建html过滤器
+        /// </summary>
+        /// <param name="policy"></param>
         public HtmlFilter(IFilterPolicy policy):this(policy,null)
         { }
         #endregion
 
         #region 属性
+        /// <summary>
+        /// 当前过滤策略
+        /// </summary>
         protected virtual IFilterPolicy Policy { get; }
         ICssFilter _cssFilter;
+        /// <summary>
+        /// 当前css过滤器
+        /// </summary>
         protected virtual ICssFilter CssFilter {
             get {
                 if (_cssFilter == null) {
@@ -38,7 +56,11 @@ namespace Ufangx.Xss
         #endregion
 
         #region 公共方法
-
+        /// <summary>
+        /// 过滤html
+        /// </summary>
+        /// <param name="html"></param>
+        /// <returns></returns>
         public virtual string Filters(string html)
         {
             if (html == null || html.Length == 0)
@@ -111,26 +133,31 @@ namespace Ufangx.Xss
             switch (actoin)
             {
                 case PolicyHtmlTagAction.Filter:
-                    ///删除当前节点，但保留其有效的子节点
+                    //删除当前节点，但保留其有效的子节点
                     PromoteChildren(node);
                     return;
                 case PolicyHtmlTagAction.Validate:
-                    ///过滤当前元素的属性与及子节点
+                    //过滤当前元素的属性与及子节点
                     ValidateAction(node, nodeName, tag);
                     return;
                 case PolicyHtmlTagAction.Truncate:
-                    ///删除当前节点的所有属性以及子节点，但保留文本和备注节点。
+                    //删除当前节点的所有属性以及子节点，但保留文本和备注节点。
                     TruncateAction(node);
                     return;
                 default:
-                    ///将当前节点从父节点中删除。
+                    //将当前节点从父节点中删除。
                     var parentNode = node.Parent;
                     parentNode.RemoveChild(node);
                     break;
             }
 
         }
-
+        /// <summary>
+        /// 验证html标签
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="tagName"></param>
+        /// <param name="tag"></param>
         protected virtual void ValidateAction(IElement node, string tagName, PolicyHtmlTag tag)
         {
             var parentNode = node.Parent;
@@ -169,6 +196,10 @@ namespace Ufangx.Xss
                     try
                     {
                         attribute.Value = CssFilter.Filters(_value);
+                        if (string.IsNullOrWhiteSpace(attribute.Value)) {
+                            node.RemoveAttribute(name);
+                            currentAttributeIndex--;
+                        }
                     }
                     catch
                     {
@@ -178,7 +209,7 @@ namespace Ufangx.Xss
                     continue;
                 }
                 #endregion
-                ///如果未能通过验证，将执行指定的操作
+                //如果未能通过验证，将执行指定的操作
                 if (!Policy.ValidateAttribute(attr, _value))
                 {
                     switch (attr.OnInvalid)
@@ -188,7 +219,7 @@ namespace Ufangx.Xss
                             parentNode.RemoveChild(node);
                             return;
                         case PolicyHtmlAttributeOnInvalid.FilterTag:
-                            ///删除当前节点，但保留其有效的子节点
+                            //删除当前节点，但保留其有效的子节点
                             PromoteChildren(node);
                             return;
                         default:
@@ -201,7 +232,7 @@ namespace Ufangx.Xss
                 }
             }
             #endregion
-            ///过滤当前元素的子节点
+            //过滤当前元素的子节点
             FiltersTags(node.ChildNodes);
 
         }
@@ -258,11 +289,11 @@ namespace Ufangx.Xss
         /// <param name="node"></param>
         protected virtual void PromoteChildren(IElement node)
         {
-            ///过滤子节点
+            //过滤子节点
             FiltersTags(node.ChildNodes);
             var nodeList = node.ChildNodes;
             var parent = node.Parent;
-            ///将它的所有子节点往上移到父节点的前面
+            //将它的所有子节点往上移到父节点的前面
             while (nodeList.Length > 0)
             {
                 var removeNode = node.RemoveChild(nodeList[0]);

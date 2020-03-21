@@ -27,7 +27,7 @@ namespace AntiXssUF.TestSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddXssFilter(opt=>opt.DefaultSchemeName= "test")
+            services.AddXssFilter(opt=>opt.DefaultSchemeName= "DefaultPolicy")
                 .AddScheme<AntisamyPolicy>("antisamy", () => File.ReadAllTextAsync(Path.Combine(HostEnvironment.ContentRootPath, "resources/antisamy.xml")))
                 .AddScheme<AntisamyPolicy>("anythinggoes", () => File.ReadAllTextAsync(Path.Combine(HostEnvironment.ContentRootPath, "resources/antisamy-anythinggoes.xml")))
                 .AddScheme<AntisamyPolicy>("ebay", () => File.ReadAllTextAsync(Path.Combine(HostEnvironment.ContentRootPath, "resources/antisamy-ebay.xml")))
