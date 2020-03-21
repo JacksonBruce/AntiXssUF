@@ -15,19 +15,18 @@ namespace AntiXssUF.TestSite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IFilterPolicyFactory policyFactory;
-        private StringBuilder html;
-        public HomeController(ILogger<HomeController> logger, IFilterPolicyFactory policyFactory)
-        {
-            _logger = logger;
-            this.policyFactory = policyFactory;
-        }
-        public async Task<IActionResult> Test(string source) {
-            var filter=await policyFactory.CreateHtmlFilter("ebay");
-            var clean = filter.Filters(source);
-            return Content(clean);
-        }
+        //private readonly ILogger<HomeController> _logger;
+        //private readonly IFilterPolicyFactory policyFactory;
+        //public HomeController(ILogger<HomeController> logger, IFilterPolicyFactory policyFactory)
+        //{
+        //    _logger = logger;
+        //    this.policyFactory = policyFactory;
+        //}
+        //public async Task<IActionResult> Test(string source) {
+        //    var filter=await policyFactory.CreateHtmlFilter("ebay");
+        //    var clean = filter.Filters(source);
+        //    return Content(clean);
+        //}
         StringBuilder stringBuilder = new StringBuilder();
         void FilterAttacks(RichText richText, Func<string, bool> fn, [CallerMemberName] string propertyName = null)
         {
@@ -202,10 +201,10 @@ namespace AntiXssUF.TestSite.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Test(TestModel model)
+        public IActionResult Test(RichText richText)
         {
-            var clean = model?.RichText?.ToString() ?? string.Empty;
-            ViewBag.html = clean;
+            string clean = richText;
+            ViewBag.html = clean??string.Empty;
             return View();
         }
 

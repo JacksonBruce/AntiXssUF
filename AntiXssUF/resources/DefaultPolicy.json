@@ -1452,6 +1452,114 @@
     {
       "Action": "Validate",
       "Name": "legend"
+    },
+    {
+      "Action": "Validate",
+      "Name": "section"
+    },
+    {
+      "Action": "Validate",
+      "Name": "nav"
+    },
+    {
+      "Action": "Validate",
+      "Name": "article"
+    },
+    {
+      "Action": "Validate",
+      "Name": "aside"
+    },
+    {
+      "Action": "Validate",
+      "Name": "header"
+    },
+    {
+      "Action": "Validate",
+      "Name": "footer"
+    },
+    {
+      "Action": "Validate",
+      "Name": "main"
+    },
+    {
+      "Action": "Validate",
+      "Name": "figure"
+    },
+    {
+      "Action": "Validate",
+      "Name": "data"
+    },
+    {
+      "Action": "Validate",
+      "Name": "time"
+    },
+    {
+      "Action": "Validate",
+      "Name": "mark"
+    },
+    {
+      "Action": "Validate",
+      "Name": "ruby"
+    },
+    {
+      "Action": "Validate",
+      "Name": "rt"
+    },
+    {
+      "Action": "Validate",
+      "Name": "rp"
+    },
+    {
+      "Action": "Validate",
+      "Name": "bdi"
+    },
+    {
+      "Action": "Validate",
+      "Name": "wbr"
+    },
+    {
+      "Action": "Validate",
+      "Name": "datalist"
+    },
+    {
+      "Action": "Validate",
+      "Name": "keygen"
+    },
+    {
+      "Action": "Validate",
+      "Name": "output"
+    },
+    {
+      "Action": "Validate",
+      "Name": "progress"
+    },
+    {
+      "Action": "Validate",
+      "Name": "meter"
+    },
+    {
+      "Action": "Validate",
+      "Name": "details"
+    },
+    {
+      "Action": "Validate",
+      "Name": "summary"
+    },
+    {
+      "Action": "Validate",
+      "Name": "menuitem"
+    },
+    {
+      "Action": "Validate",
+      "Name": "menu"
+    },
+    {
+      "Action": "Validate",
+      "Name": "caption"
+    },
+    {
+      "Action": "Validate",
+      "Name": "picture"
     }
   ]
 }

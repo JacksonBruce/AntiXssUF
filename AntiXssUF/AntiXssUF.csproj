@@ -4,19 +4,21 @@
     <TargetFrameworks>net461;netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>AntiXssUF</AssemblyName>
     <RootNamespace>Ufangx.Xss</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>xss anit policy filter</Description>
     <Authors>Jackson.bruce</Authors>
     <Company>ufangx</Company>
     <Copyright>Copyright (c) 2020-$([System.DateTime]::Now.Year) Jackson.Bruce</Copyright>
     <PackageProjectUrl>https://github.com/JacksonBruce/AntiXssUF</PackageProjectUrl>
     <RepositoryUrl>https://github.com/JacksonBruce/AntiXssUF.git</RepositoryUrl>
-    <PackageTags>Anti Xss .NETStandard</PackageTags>
+    <PackageTags>Anti Xss .netstandard .netcoreapp Attribute .netframework4.6.1</PackageTags>
     <PackageReleaseNotes>https://github.com/JacksonBruce/AntiXssUF/blob/master/README.md</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\AntiXssUF.xml</DocumentationFile>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <Version>2.0.0</Version>
+    <Version>2.0.0-beta</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
  
 
@@ -26,7 +28,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="resources\DefaultPolicy.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </EmbeddedResource>
