@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <authors>$author$</authors>
-    <owners>ufangx</owners>
+    <id>AntiXssUF</id>
+    <version>2.0.2-beta</version>
+    <authors>Jackson.bruce</authors>
+    <owners>Jackson.bruce</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <title>$title$</title>
-    <description>$author$</description>
-    <copyright>$copyright$</copyright>
+    <title>Policy-based filter html to avoid XSS attacks; support dotnet core and dotnet framework</title>
     <licenseUrl>https://github.com/JacksonBruce/AntiXssUF/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/JacksonBruce/AntiXssUF</projectUrl>
+    <description>xss anit policy filter</description>
     <releaseNotes>https://github.com/JacksonBruce/AntiXssUF/blob/master/README.md</releaseNotes>
-    <tags>Anti Xss .NETStandard </tags>
-    <repository url="https://github.com/JacksonBruce/AntiXssUF" />
+    <copyright>Copyright (c) 2020-2020 Jackson.Bruce</copyright>
+    <tags>Anti Xss asp.net mvc asp.netcore webapi .netstandard .netcoreapp Attribute .netframework4.6.1</tags>
+    <repository type="git" url="https://github.com/JacksonBruce/AntiXssUF.git" />
     <dependencies>
       <group targetFramework=".NETFramework4.6.1">
         <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
@@ -25,22 +25,17 @@
       <group targetFramework=".NETCoreApp2.1">
         <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
         <dependency id="AngleSharp.Css" version="0.13.0" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Options" version="3.1.2" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Options" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
       </group>
       <group targetFramework=".NETCoreApp3.1">
         <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
         <dependency id="AngleSharp.Css" version="0.13.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.AspNetCore.Mvc.Abstractions" version="2.2.0" exclude="Build,Analyzers" />
         <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.2.5" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.2" exclude="Build,Analyzers" />
@@ -49,8 +44,6 @@
       <group targetFramework=".NETStandard2.0">
         <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
         <dependency id="AngleSharp.Css" version="0.13.0" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.2" exclude="Build,Analyzers" />
@@ -59,8 +52,6 @@
       <group targetFramework=".NETStandard2.1">
         <dependency id="AngleSharp" version="0.13.0" exclude="Build,Analyzers" />
         <dependency id="AngleSharp.Css" version="0.13.0" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration" version="3.1.2" exclude="Build,Analyzers" />
-        <dependency id="Microsoft.Extensions.Configuration.Abstractions" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Binder" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.Configuration.Json" version="3.1.2" exclude="Build,Analyzers" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="3.1.2" exclude="Build,Analyzers" />
@@ -73,9 +64,20 @@
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.6.1" />
     </frameworkAssemblies>
   </metadata>
+
   <files>
 
-    <file src="netstandard2.1\*.dll" target="lib\netstandard2.1" />
-    <file src="resources\*.*" target="content\resources" />
+    <file src="bin\Release\netstandard2.1\AntiXssUF.dll" target="lib\netstandard2.1\AntiXssUF.dll" />
+    <file src="bin\Release\netstandard2.0\AntiXssUF.dll" target="lib\netstandard2.0\AntiXssUF.dll" />
+    <file src="bin\Release\netcoreapp2.1\AntiXssUF.dll" target="lib\netcoreapp2.1\AntiXssUF.dll" />
+    <file src="bin\Release\netcoreapp3.1\AntiXssUF.dll" target="lib\netcoreapp3.1\AntiXssUF.dll" />
+    <file src="bin\Release\net461\AntiXssUF.dll" target="lib\net461\AntiXssUF.dll" />
+    <file src="bin\Release\netstandard2.1\AntiXssUF.xml" target="lib\netstandard2.1\AntiXssUF.xml" />
+    <file src="bin\Release\netstandard2.0\AntiXssUF.xml" target="lib\netstandard2.0\AntiXssUF.xml" />
+    <file src="bin\Release\netcoreapp2.1\AntiXssUF.xml" target="lib\netcoreapp2.1\AntiXssUF.xml" />
+    <file src="bin\Release\netcoreapp3.1\AntiXssUF.xml" target="lib\netcoreapp3.1\AntiXssUF.xml" />
+    <file src="bin\Release\net461\AntiXssUF.xml" target="lib\net461\AntiXssUF.xml" />
+	  <file src="resources\*.*" target="contentFiles\any\any\resources" />
+     
   </files>
 </package>

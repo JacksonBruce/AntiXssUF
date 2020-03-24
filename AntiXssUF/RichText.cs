@@ -52,7 +52,7 @@ namespace Ufangx.Xss
         /// 内置的过滤策略
         /// </summary>
         /// <returns></returns>
-        public static IFilterPolicy GetPresupposedPolicy()
+        internal static IFilterPolicy GetPresupposedPolicy()
         {
             if (presupposedPolicy == null)
             {
