@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>AntiXssUF</id>
-    <version>2.0.2-beta</version>
+    <version>2.0.2</version>
     <authors>Jackson.bruce</authors>
     <owners>Jackson.bruce</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -63,8 +63,10 @@
       <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.6.1" />
       <frameworkAssembly assemblyName="System.Web" targetFramework=".NETFramework4.6.1" />
     </frameworkAssemblies>
+    <contentFiles>
+           <files include="any/any/resources/**/*.*" buildAction="Content" copyToOutput="true" />
+    </contentFiles>
   </metadata>
-
   <files>
 
     <file src="bin\Release\netstandard2.1\AntiXssUF.dll" target="lib\netstandard2.1\AntiXssUF.dll" />
